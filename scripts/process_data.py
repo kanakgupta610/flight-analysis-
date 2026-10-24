@@ -159,6 +159,8 @@ def load_weather(data_dir):
     report["unparsed_dates"] = int(w.date.isna().sum())
     report["non_2019_dates"] = int((w.date.dt.year != 2019).sum())
     w = w[w.date.dt.year == 2019]
+    report["date_range"] = [w.date.min().strftime("%Y-%m-%d"), w.date.max().strftime("%Y-%m-%d")]
+    report["station_days_per_station"] = {"min": int(w.groupby("NAME").size().min()), "max": int(w.groupby("NAME").size().max())}
     report["duplicate_station_days"] = int(w.duplicated(["NAME", "date"]).sum())
     w = w.drop_duplicates(["NAME", "date"])
     report["out_of_range_set_missing"] = {}
@@ -176,8 +178,13 @@ def load_weather(data_dir):
     cond[known & fog] = "Foggy"
     cond[known & (w.PRCP >= 0.01)] = "Rainy"
     cond[known & (w.SNOW > 0)] = "Snowy"
+    # wet day at a station that did not report snowfall: rain and snow cannot be told apart, so leave it unclassified
+    ambiguous = known & (w.PRCP >= 0.01) & w.SNOW.isna() & ~thunder
+    cond[ambiguous] = pd.NA
     cond[known & thunder] = "Stormy"
     w["condition"] = pd.Categorical(cond, categories=CONDITIONS)
+    report["station_days_rain_or_snow_unknown"] = int(ambiguous.sum())
+    report["station_days_no_precip_reading"] = int((~known).sum())
     report["station_days_by_condition"] = {c: int((w.condition == c).sum()) for c in CONDITIONS}
     report["station_days_unclassified"] = int(w.condition.isna().sum())
     return w[["NAME", "date", "PRCP", "SNOW", "TMAX", "AWND", "condition"]], report
@@ -234,7 +241,8 @@ def main():
 
     rng = np.random.default_rng(SEED)
     totals = dict(rows=0, bad_dates=0, weekday_mismatch=0, cancelled=0, operated=0, missing_status=0, joined=0,
-                  no_station=0, no_weather_row=0, unclassified_weather=0)
+                  no_station=0, no_weather_row=0, matched=0, unclassified_weather=0, no_precip_reading=0,
+                  rain_or_snow_unknown=0)
     acc = {k: GroupAcc() for k in ["month", "carrier", "airport", "block", "condition", "wind", "prcp", "snow",
                                    "tmax"]}
     hist_all = np.zeros(3000, dtype=np.int64)
@@ -245,17 +253,27 @@ def main():
     mom = {"AWND": Moments(), "PRCP": Moments(), "TMAX": Moments(), "SNOW": Moments()}
     sample = []
     airport_names = {}
+    missing = dict.fromkeys(FLIGHT_COLS, 0)
+    missing_operated = dict.fromkeys(FLIGHT_COLS, 0)
+    date_min = date_max = None
 
     for f in files:
         log(f"reading {f.name}")
         for ch in pd.read_csv(f, usecols=FLIGHT_COLS, chunksize=args.chunksize,
                               dtype={"OP_UNIQUE_CARRIER": "category", "ORIGIN": "category", "DEP_TIME_BLK": "category"}):
             totals["rows"] += len(ch)
+            for c, k in ch.isna().sum().items():
+                missing[c] += int(k)
+            for c, k in ch[ch.CANCELLED == 0].isna().sum().items():
+                missing_operated[c] += int(k)
             date = pd.to_datetime(dict(year=2019, month=ch.MONTH, day=ch.DAY_OF_MONTH), errors="coerce")
             bad = date.isna()
             wk = ~bad & ((date.dt.dayofweek + 1) != ch.DAY_OF_WEEK)
             totals["bad_dates"] += int(bad.sum()); totals["weekday_mismatch"] += int(wk.sum())
             ch = ch.assign(date=date)[~bad & ~wk]
+            lo, hi = ch.date.min(), ch.date.max()
+            date_min = lo if date_min is None else min(date_min, lo)
+            date_max = hi if date_max is None else max(date_max, hi)
 
             totals["cancelled"] += int((ch.CANCELLED == 1).sum())
             op = ch[ch.CANCELLED == 0]
@@ -285,13 +303,18 @@ def main():
             j = op[op.station.notna()].merge(weather, on=["station", "date"], how="left", indicator=True)
             totals["no_weather_row"] += int((j._merge == "left_only").sum())
             j = j[j._merge == "both"]
-            totals["unclassified_weather"] += int(j.condition.isna().sum())
-            j = j[j.condition.notna()]
-            totals["joined"] += len(j)
+            totals["matched"] += len(j)
+            unc = j.condition.isna()
+            totals["unclassified_weather"] += int(unc.sum())
+            totals["no_precip_reading"] += int((unc & j.PRCP.isna()).sum())
+            totals["rain_or_snow_unknown"] += int((unc & j.PRCP.notna()).sum())
+            # condition probabilities use classified days; the measurement analyses below use every matched flight
+            jc = j[~unc]
+            totals["joined"] += len(jc)
 
-            acc["condition"].add(j, "condition")
+            acc["condition"].add(jc, "condition")
             for c in CONDITIONS:
-                sel = j.loc[(j.condition == c) & (j.DEP_DEL15 == 1), "DEP_DELAY_NEW"]
+                sel = jc.loc[(jc.condition == c) & (jc.DEP_DEL15 == 1), "DEP_DELAY_NEW"]
                 hist_delayed_by_cond[c] += np.bincount(sel.clip(upper=2999).astype(np.int64), minlength=3000)
             for col, bins, labels, name in [("AWND", WIND_BINS, WIND_LABELS, "wind"), ("PRCP", PRCP_BINS, PRCP_LABELS, "prcp"),
                                             ("SNOW", SNOW_BINS, SNOW_LABELS, "snow"), ("TMAX", TMAX_BINS, TMAX_LABELS, "tmax")]:
@@ -299,7 +322,7 @@ def main():
                 acc[name].add(sub.assign(bin=pd.cut(sub[col], bins, labels=labels, right=True, include_lowest=True)), "bin")
                 mom[col].add(sub[col].to_numpy(), sub.DEP_DELAY_NEW.to_numpy())
 
-            # reproducible uniform sample of joined flights for the scatter plot / sample rows
+            # reproducible uniform sample of matched flights for the scatter plot / sample rows
             js = j[j.AWND.notna()]
             keys = rng.random(len(js))
             keep = np.argsort(keys)[:SCATTER_N]
@@ -352,12 +375,16 @@ def main():
             "condition_rules": {
                 "Stormy": "thunder (WT03), hail (WT05) or tornado (WT10) recorded that day",
                 "Snowy": "snowfall > 0 in, no thunder",
-                "Rainy": "precipitation ≥ 0.01 in, no snowfall or thunder",
+                "Rainy": "precipitation ≥ 0.01 in, snowfall reported as 0, no thunder",
                 "Foggy": "fog (WT01/WT02) recorded, no precipitation or thunder",
-                "Clear": "none of the above (dry day, no fog or thunder)"},
+                "Clear": "none of the above (dry day, no fog or thunder)",
+                "unclassified": "no precipitation reading, or a wet day at a station that did not report snowfall"},
             "seed": SEED,
         },
-        "validation": {"flights": totals, "weather": weather_report, "station_mapping": mapping,
+        "validation": {"flights": totals, "flight_dates": {"first": date_min.strftime("%Y-%m-%d"), "last": date_max.strftime("%Y-%m-%d"),
+                                                           "days": int((date_max - date_min).days) + 1},
+                       "flight_missing_values": {"all_rows": missing, "operated_rows": missing_operated},
+                       "weather": weather_report, "station_mapping": mapping,
                        "airports_joined": len(station_of), "excluded_airports": EXCLUDED_AIRPORTS},
         "overall": {
             "scheduled": totals["rows"] - totals["bad_dates"] - totals["weekday_mismatch"],
@@ -374,6 +401,7 @@ def main():
                        "share": {c: cause_minutes[c] / sum(cause_minutes.values()) for c in CAUSES}},
         },
         "weather_join": {
+            "matched": totals["matched"], "share_matched": totals["matched"] / op_n,
             "flights": joined_n, "share_of_operated": joined_n / op_n, "delayed": joined_delayed,
             "p_delay": joined_delayed / joined_n, "contingency": contingency,
             "chi_square": {"statistic": chi2, "df": df_chi, "p_value": chi2_sf(chi2, df_chi)},
@@ -390,7 +418,7 @@ def main():
         "by_carrier": sorted(carriers, key=lambda r: -r["p_delay"]),
         "busiest_airports": sorted(airports, key=lambda r: -r["flights"])[:15],
         "scatter_sample": [{"month": int(r.MONTH), "day": int(r.DAY_OF_MONTH), "origin": r.ORIGIN,
-                            "carrier": r.OP_UNIQUE_CARRIER, "condition": r.condition, "awnd": float(r.AWND),
+                            "carrier": r.OP_UNIQUE_CARRIER, "condition": None if pd.isna(r.condition) else r.condition, "awnd": float(r.AWND),
                             "prcp": float(r.PRCP), "tmax": None if pd.isna(r.TMAX) else float(r.TMAX),
                             "delay_min": float(r.DEP_DELAY_NEW), "delayed": int(r.DEP_DEL15)}
                            for r in sample.itertuples()],

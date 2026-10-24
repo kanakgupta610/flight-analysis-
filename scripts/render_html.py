@@ -93,7 +93,7 @@ def r_s1_lead(R):
 
 
 def r_s3_variables(R):
-    rows = [("Weather condition", "Clear, foggy, rainy, snowy, stormy — from NOAA daily weather flags"),
+    rows = [("Weather condition", "Clear, foggy, rainy, snowy, stormy — from NOAA daily weather records"),
             ("Delay status", "Delayed (≥ 15 min, DEP_DEL15) / not delayed"),
             ("Delay duration", "Departure delay in minutes (DEP_DELAY_NEW)"),
             ("Weather measurements", "Avg wind (mph), precipitation &amp; snowfall (in), max temp (°F)")]
@@ -130,9 +130,10 @@ def r_s3_dataset(R):
         f'  <p class="small" style="margin-top: 14px">{pct(o["p_cancel"])} of scheduled flights were cancelled and are left out of delay rates. '
         f'90% of departures left within {dm["p90"]} min of schedule; delayed flights waited a median {dm["median_if_delayed"]} min '
         f'(mean {dm["mean_if_delayed"]:.1f} min).</p>',
-        f'  <p class="small" style="margin-top: 8px; color: #a9b7cf">Weather matched on (origin station, date) for {n(wj["flights"])} departures '
-        f'({pct(wj["share_of_operated"])}) at {v["airports_joined"]} airports. {len(v["excluded_airports"])} airports were excluded because '
-        f'their listed weather station is in another city; airports with no listed station are not joined.</p>',
+        f'  <p class="small" style="margin-top: 8px; color: #a9b7cf">Weather matched on (origin station, date) for {n(wj["matched"])} departures '
+        f'({pct(wj["share_matched"])}) at {v["airports_joined"]} airports; {n(wj["flights"])} of them fall on days with a definite weather '
+        f'condition. Wet days at stations that do not report snowfall are left unclassified, because rain and snow cannot be told apart. '
+        f'{len(v["excluded_airports"])} airports were excluded because their listed weather station is in another city.</p>',
         '</div>',
     ]
 
@@ -146,7 +147,7 @@ def pick_sample_rows(sample, k=6):
     for i, s in enumerate(sample):
         if len(rows) >= k:
             break
-        if i not in used and s["delayed"]:
+        if i not in used and s["delayed"] and s["condition"]:
             rows.append(i); used.add(i)
     return [sample[i] for i in rows[:k]]
 
@@ -380,7 +381,7 @@ def r_s7_chart(R):
 
 
 def r_s8_badge(R):
-    return [f'<span class="badge ok">Real 2019 data — {n(R["weather_join"]["flights"])} departures with matched weather</span>']
+    return [f'<span class="badge ok">Real 2019 data — {n(R["weather_join"]["flights"])} departures with classified weather</span>']
 
 
 def compact_table(title, headers, rows, delay, accent):
@@ -445,7 +446,7 @@ def r_s8_body(R):
         *["          " + s for s in bars],
         "        </svg>",
         "      </div>",
-        f'      <p class="small" style="margin-top: 6px">95% confidence intervals are within ±{100 * hw:.1f} percentage points for every condition. '
+        f'      <p class="small" style="margin-top: 6px">95% confidence intervals are within ±{math.ceil(10000 * hw) / 100:.2f} percentage points for every condition. '
         f'χ² test of independence: χ² = {n(round(chi["statistic"]))}, df = {chi["df"]}, p &lt; 0.001.</p>',
         "    </div>",
         "  </div>",
@@ -484,7 +485,7 @@ def r_s8_body(R):
         '  <div class="glass pad" style="margin-top: 16px; padding: 14px 20px; display: flex; gap: 16px; align-items: center; border-left: 2px solid #E8797F">',
         '    <span class="label" style="margin: 0; color: #E8797F">Limitations</span>',
         f'    <p class="small">Association does not prove causation. Weather is a daily summary at the origin airport’s station, not the conditions '
-        f'at departure time; {pct(1 - wj["share_of_operated"])} of operated flights had no compatible station; cancelled flights '
+        f'at departure time; {pct(1 - wj["share_matched"])} of operated flights had no compatible station; cancelled flights '
         f'({pct(R["overall"]["p_cancel"])}) are excluded. With millions of flights even small gaps are statistically significant, so compare the size of the differences.</p>',
         "  </div>",
         "</div>",

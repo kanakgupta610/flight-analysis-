@@ -1,0 +1,49 @@
+# Only the presentation itself (index.html) needs to be published.
+# Build and analysis tooling
+scripts/
+data/
+README.md
+*.py
+*.ipynb
+__pycache__/
+
+# Raw or intermediate data, in case any is ever placed in the repo
+*.csv
+*.csv.gz
+*.tsv
+*.parquet
+*.feather
+*.json
+*.zip
+*.7z
+*.tar.gz
+*.pdf
+raw_data/
+archive/
+
+# Credentials, local config, temporary and OS files
+.env
+.env.*
+*.pem
+*.key
+*.p12
+secrets*
+.netrc
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+*.swp
+tmp/
+.cache/
+.venv/
+venv/
+.vscode/
+*.code-workspace
+
+# Repo housekeeping files
+.gitignore
+.vercelignore
+
+# Keep Vercel project config if one is ever added
+!vercel.json

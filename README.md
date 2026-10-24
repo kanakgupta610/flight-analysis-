@@ -28,5 +28,7 @@ Requires Python 3 with pandas, numpy and pyarrow.
 
 - **Delayed**: departure delay ≥ 15 minutes (`DEP_DEL15 = 1`); cancelled flights are excluded from delay rates.
 - **Weather condition** (daily, origin station; first match wins): Stormy = thunder, hail or tornado flag ·
-  Snowy = snowfall > 0 · Rainy = precipitation ≥ 0.01 in · Foggy = fog flag · Clear = none of these.
+  Snowy = snowfall > 0 · Rainy = precipitation ≥ 0.01 in with snowfall reported as 0 · Foggy = fog flag ·
+  Clear = none of these. Wet days at stations that do not report snowfall (rain vs snow unknown) and days without a
+  precipitation reading are left unclassified; they still count in the wind, precipitation and temperature analyses.
 - Units: wind mph (average daily), precipitation and snowfall in inches, temperature °F.
