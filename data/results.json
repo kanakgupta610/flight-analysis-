@@ -1,0 +1,8095 @@
+{
+ "meta": {
+  "title": "2019 US domestic departures (BTS) joined to NOAA GHCN-Daily airport weather",
+  "source": "Kaggle: 2019 Airline Delays w/ Weather and Airport Detail (BTS On-Time Reporting + NOAA GHCN-Daily)",
+  "period": "January–December 2019",
+  "delay_definition": "departure delay ≥ 15 min (BTS DEP_DEL15 = 1)",
+  "weather_resolution": "daily, at the origin airport's weather station",
+  "units": {
+   "AWND": "mph (average daily wind speed)",
+   "PRCP": "inches",
+   "SNOW": "inches",
+   "TMAX": "°F"
+  },
+  "condition_rules": {
+   "Stormy": "thunder (WT03), hail (WT05) or tornado (WT10) recorded that day",
+   "Snowy": "snowfall > 0 in, no thunder",
+   "Rainy": "precipitation ≥ 0.01 in, snowfall reported as 0, no thunder",
+   "Foggy": "fog (WT01/WT02) recorded, no precipitation or thunder",
+   "Clear": "none of the above (dry day, no fog or thunder)",
+   "unclassified": "no precipitation reading, or a wet day at a station that did not report snowfall"
+  },
+  "seed": 2019
+ },
+ "validation": {
+  "flights": {
+   "rows": 7422037,
+   "bad_dates": 0,
+   "weekday_mismatch": 0,
+   "cancelled": 134925,
+   "operated": 7287112,
+   "missing_status": 0,
+   "joined": 5948973,
+   "no_station": 1029016,
+   "no_weather_row": 788,
+   "matched": 6257308,
+   "unclassified_weather": 308335,
+   "no_precip_reading": 1387,
+   "rain_or_snow_unknown": 306948
+  },
+  "flight_dates": {
+   "first": "2019-01-01",
+   "last": "2019-12-31",
+   "days": 365
+  },
+  "flight_missing_values": {
+   "all_rows": {
+    "MONTH": 0,
+    "DAY_OF_MONTH": 0,
+    "DAY_OF_WEEK": 0,
+    "OP_UNIQUE_CARRIER": 0,
+    "ORIGIN_AIRPORT_ID": 0,
+    "ORIGIN": 0,
+    "DEP_DELAY_NEW": 130110,
+    "DEP_DEL15": 130110,
+    "DEP_TIME_BLK": 0,
+    "CANCELLED": 0,
+    "ARR_DELAY_NEW": 153805,
+    "CARRIER_DELAY": 6032784,
+    "WEATHER_DELAY": 6032784,
+    "NAS_DELAY": 6032784,
+    "SECURITY_DELAY": 6032784,
+    "LATE_AIRCRAFT_DELAY": 6032784
+   },
+   "operated_rows": {
+    "MONTH": 0,
+    "DAY_OF_MONTH": 0,
+    "DAY_OF_WEEK": 0,
+    "OP_UNIQUE_CARRIER": 0,
+    "ORIGIN_AIRPORT_ID": 0,
+    "ORIGIN": 0,
+    "DEP_DELAY_NEW": 0,
+    "DEP_DEL15": 0,
+    "DEP_TIME_BLK": 0,
+    "CANCELLED": 0,
+    "ARR_DELAY_NEW": 18880,
+    "CARRIER_DELAY": 5897859,
+    "WEATHER_DELAY": 5897859,
+    "NAS_DELAY": 5897859,
+    "SECURITY_DELAY": 5897859,
+    "LATE_AIRCRAFT_DELAY": 5897859
+   }
+  },
+  "weather": {
+   "rows": 38675,
+   "stations": 106,
+   "date_formats": {
+    "M/D/YYYY": 16423,
+    "YYYY-MM-DD": 22252
+   },
+   "unparsed_dates": 0,
+   "non_2019_dates": 0,
+   "date_range": [
+    "2019-01-01",
+    "2019-12-31"
+   ],
+   "station_days_per_station": {
+    "min": 355,
+    "max": 365
+   },
+   "duplicate_station_days": 0,
+   "out_of_range_set_missing": {
+    "PRCP": 0,
+    "SNOW": 0,
+    "SNWD": 0,
+    "TMAX": 0,
+    "AWND": 0
+   },
+   "missing_share": {
+    "PRCP": 0.0006722689075630252,
+    "SNOW": 0.3042792501616031,
+    "SNWD": 0.31777634130575305,
+    "TMAX": 0.0005171299288946348,
+    "AWND": 0.009851325145442793
+   },
+   "station_days_rain_or_snow_unknown": 2643,
+   "station_days_no_precip_reading": 26,
+   "station_days_by_condition": {
+    "Clear": 20393,
+    "Foggy": 4444,
+    "Rainy": 5157,
+    "Snowy": 1174,
+    "Stormy": 4838
+   },
+   "station_days_unclassified": 2669
+  },
+  "station_mapping": [
+   {
+    "airport_id": 12992,
+    "airport": "Adams Field",
+    "city": "Little Rock, AR",
+    "station": "NORTH LITTLE ROCK AIRPORT, AR US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 10257,
+    "airport": "Albany International",
+    "city": "Albany, NY",
+    "station": "ALBANY INTERNATIONAL AIRPORT, NY US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 10140,
+    "airport": "Albuquerque International Sunport",
+    "city": "Albuquerque, NM",
+    "station": "ALBUQUERQUE INTERNATIONAL AIRPORT, NM US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 10299,
+    "airport": "Anchorage International",
+    "city": "Anchorage, AK",
+    "station": "ANCHORAGE TED STEVENS INTERNATIONAL AIRPORT, AK US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 10397,
+    "airport": "Atlanta Municipal",
+    "city": "Atlanta, GA",
+    "station": "ATLANTA HARTSFIELD JACKSON INTERNATIONAL AIRPORT, GA US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 10423,
+    "airport": "Austin - Bergstrom International",
+    "city": "Austin, TX",
+    "station": "AUSTIN BERGSTROM INTERNATIONAL AIRPORT, TX US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 10599,
+    "airport": "Birmingham Airport",
+    "city": "Birmingham, AL",
+    "station": "BIRMINGHAM AIRPORT, AL US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 10529,
+    "airport": "Bradley International",
+    "city": "Hartford, CT",
+    "station": "HARTFORD BRADLEY INTERNATIONAL AIRPORT, CT US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 10994,
+    "airport": "Charleston International",
+    "city": "Charleston, SC",
+    "station": "CHARLESTON INTL. AIRPORT, SC US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 13232,
+    "airport": "Chicago Midway International",
+    "city": "Chicago, IL",
+    "station": "CHICAGO OHARE INTERNATIONAL AIRPORT, IL US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 13930,
+    "airport": "Chicago O'Hare International",
+    "city": "Chicago, IL",
+    "station": "CHICAGO OHARE INTERNATIONAL AIRPORT, IL US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 11193,
+    "airport": "Cincinnati/Northern Kentucky International",
+    "city": "Cincinnati, OH",
+    "station": "CINCINNATI MUNICIPAL AIRPORT LUNKEN FIELD, OH US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 11042,
+    "airport": "Cleveland-Hopkins International",
+    "city": "Cleveland, OH",
+    "station": "CLEVELAND HOPKINS INTERNATIONAL AIRPORT, OH US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 11298,
+    "airport": "Dallas Fort Worth Regional",
+    "city": "Dallas/Fort Worth, TX",
+    "station": "FORT WORTH MEACHAM FIELD, TX US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 11259,
+    "airport": "Dallas Love Field",
+    "city": "Dallas, TX",
+    "station": "DALLAS FAA AIRPORT, TX US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 11423,
+    "airport": "Des Moines Municipal",
+    "city": "Des Moines, IA",
+    "station": "DES MOINES INTERNATIONAL AIRPORT, IA US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 11433,
+    "airport": "Detroit Metro Wayne County",
+    "city": "Detroit, MI",
+    "station": "DETROIT METRO AIRPORT, MI US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 11057,
+    "airport": "Douglas Municipal",
+    "city": "Charlotte, NC",
+    "station": "CHARLOTTE DOUGLAS AIRPORT, NC US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 11540,
+    "airport": "El Paso International",
+    "city": "El Paso, TX",
+    "station": "EL PASO INTERNATIONAL AIRPORT, TX US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 13871,
+    "airport": "Eppley Airfield",
+    "city": "Omaha, NE",
+    "station": "GRAND ISLAND CENTRAL NE REGIONAL AIRPORT, NE US",
+    "status": "excluded: Omaha (Eppley) -> Grand Island, NE station"
+   },
+   {
+    "airport_id": 11697,
+    "airport": "Fort Lauderdale-Hollywood International",
+    "city": "Fort Lauderdale, FL",
+    "station": "FORT LAUDERDALE INTERNATIONAL AIRPORT, FL US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 11638,
+    "airport": "Fresno Air Terminal",
+    "city": "Fresno, CA",
+    "station": "FRESNO YOSEMITE INTERNATIONAL, CA US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 10821,
+    "airport": "Friendship International",
+    "city": "Baltimore, MD",
+    "station": "BALTIMORE WASHINGTON INTERNATIONAL AIRPORT, MD US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 13342,
+    "airport": "General Mitchell Field",
+    "city": "Milwaukee, WI",
+    "station": "MILWAUKEE MITCHELL AIRPORT, WI US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 10792,
+    "airport": "Greater Buffalo International",
+    "city": "Buffalo, NY",
+    "station": "BUFFALO NIAGARA INTERNATIONAL, NY US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 11996,
+    "airport": "Greenville-Spartanburg",
+    "city": "Greer, SC",
+    "station": "GREENVILLE DOWNTOWN AIRPORT, SC US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 10800,
+    "airport": "Grenier Field/Manchester Municipal",
+    "city": "Manchester, NH",
+    "station": "MANCHESTER AIRPORT, NH US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 12173,
+    "airport": "Hollywood-Burbank Midpoint",
+    "city": "Burbank, CA",
+    "station": "LOS ANGELES INTERNATIONAL AIRPORT, CA US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 12266,
+    "airport": "Honolulu International",
+    "city": "Honolulu, HI",
+    "station": "HONOLULU INTERNATIONAL AIRPORT, HI US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 12339,
+    "airport": "Indianapolis Muni/Weir Cook",
+    "city": "Indianapolis, IN",
+    "station": "INDIANAPOLIS INTERNATIONAL AIRPORT, IN US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 12451,
+    "airport": "Jacksonville International",
+    "city": "Jacksonville, FL",
+    "station": "JACKSONVILLE INTERNATIONAL AIRPORT, FL US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 11267,
+    "airport": "James M Cox/Dayton International",
+    "city": "Dayton, OH",
+    "station": "DAYTON WRIGHT BROTHERS AIRPORT, OH US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 12478,
+    "airport": "John F. Kennedy International",
+    "city": "New York, NY",
+    "station": "LAGUARDIA AIRPORT, NY US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 13830,
+    "airport": "Kahului Airport",
+    "city": "Kahului, HI",
+    "station": "HONOLULU INTERNATIONAL AIRPORT, HI US",
+    "status": "excluded: Kahului (Maui) -> Honolulu (Oahu) station"
+   },
+   {
+    "airport_id": 13198,
+    "airport": "Kansas City International",
+    "city": "Kansas City, MO",
+    "station": "KANSAS CITY INTERNATIONAL AIRPORT, MO US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 12758,
+    "airport": "Keahole",
+    "city": "Kona, HI",
+    "station": "KAILUA KONA KE AHOLE AIRPORT, HI US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 11986,
+    "airport": "Kent County",
+    "city": "Grand Rapids, MI",
+    "station": "GRAND RAPIDS GERALD R FORD INTERNATIONAL AIRPORT, MI US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 12953,
+    "airport": "LaGuardia",
+    "city": "New York, NY",
+    "station": "LAGUARDIA AIRPORT, NY US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 15016,
+    "airport": "Lambert-St. Louis International",
+    "city": "St. Louis, MO",
+    "station": "ST LOUIS LAMBERT INTERNATIONAL AIRPORT, MO US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 12982,
+    "airport": "Lihue Airport",
+    "city": "Lihue, HI",
+    "station": "LIHUE WEATHER SERVICE OFFICE AIRPORT 1020.1, HI US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 10721,
+    "airport": "Logan International",
+    "city": "Boston, MA",
+    "station": "BOSTON, MA US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 12954,
+    "airport": "Long Beach Daugherty Field",
+    "city": "Long Beach, CA",
+    "station": "LOS ANGELES INTERNATIONAL AIRPORT, CA US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 12892,
+    "airport": "Los Angeles International",
+    "city": "Los Angeles, CA",
+    "station": "LOS ANGELES INTERNATIONAL AIRPORT, CA US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 13495,
+    "airport": "Louis Armstrong New Orleans International",
+    "city": "New Orleans, LA",
+    "station": "NEW ORLEANS AIRPORT, LA US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 12889,
+    "airport": "McCarran International",
+    "city": "Las Vegas, NV",
+    "station": "MCCARRAN INTERNATIONAL AIRPORT, NV US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 15412,
+    "airport": "McGhee Tyson",
+    "city": "Knoxville, TN",
+    "station": "KNOXVILLE AIRPORT, TN US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 13244,
+    "airport": "Memphis International",
+    "city": "Memphis, TN",
+    "station": "MEMPHIS INTERNATIONAL AIRPORT, TN US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 13796,
+    "airport": "Metropolitan Oakland International",
+    "city": "Oakland, CA",
+    "station": "SACRAMENTO METROPOLITAN AIRPORT, CA US",
+    "status": "excluded: Oakland -> Sacramento, CA station"
+   },
+   {
+    "airport_id": 13303,
+    "airport": "Miami International",
+    "city": "Miami, FL",
+    "station": "MIAMI INTERNATIONAL AIRPORT, FL US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 13487,
+    "airport": "Midland Regional Air Trml",
+    "city": "Midland/Odessa, TX",
+    "station": "PORT ARTHUR SE TX REGIONAL AIRPORT, TX US",
+    "status": "excluded: Midland/Odessa -> Port Arthur, TX station"
+   },
+   {
+    "airport_id": 13577,
+    "airport": "Minneapolis-St Paul International",
+    "city": "Minneapolis, MN",
+    "station": "MINNEAPOLIS ST. PAUL INTERNATIONAL AIRPORT, MN US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 10693,
+    "airport": "Myrtle Beach International",
+    "city": "Myrtle Beach, SC",
+    "station": "NORTH MYRTLE BEACH, SC US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 11618,
+    "airport": "Newark Liberty International",
+    "city": "Newark, NJ",
+    "station": "NEWARK LIBERTY INTERNATIONAL AIRPORT, NJ US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 13931,
+    "airport": "Norfolk International",
+    "city": "Norfolk, VA",
+    "station": "NORFOLK INTERNATIONAL AIRPORT, VA US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 15919,
+    "airport": "Northwest Arkansas Regional",
+    "city": "Fayetteville, AR",
+    "station": "FAYETTEVILLE SPRINGDALE NW AR REGL AIRPORT, AR US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 13891,
+    "airport": "Ontario International",
+    "city": "Ontario, CA",
+    "station": "LOS ANGELES INTERNATIONAL AIRPORT, CA US",
+    "status": "excluded: Ontario, CA -> Los Angeles Intl station"
+   },
+   {
+    "airport_id": 14908,
+    "airport": "Orange County",
+    "city": "Santa Ana, CA",
+    "station": "SANTA ANA JOHN WAYNE AIRPORT, CA US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 13204,
+    "airport": "Orlando International",
+    "city": "Orlando, FL",
+    "station": "ORLANDO INTERNATIONAL AIRPORT, FL US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 14027,
+    "airport": "Palm Beach International",
+    "city": "West Palm Beach/Palm Beach, FL",
+    "station": "WEST PALM BEACH INTERNATIONAL AIRPORT, FL US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 14262,
+    "airport": "Palm Springs International",
+    "city": "Palm Springs, CA",
+    "station": "DESERT RESORTS REGIONAL AIRPORT, CA US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 14193,
+    "airport": "Pensacola Regional",
+    "city": "Pensacola, FL",
+    "station": "TALLAHASSEE REGIONAL AIRPORT, FL US",
+    "status": "excluded: Pensacola -> Tallahassee, FL station"
+   },
+   {
+    "airport_id": 14100,
+    "airport": "Philadelphia International",
+    "city": "Philadelphia, PA",
+    "station": "PHILADELPHIA INTERNATIONAL AIRPORT, PA US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 14107,
+    "airport": "Phoenix Sky Harbor International",
+    "city": "Phoenix, AZ",
+    "station": "PHOENIX AIRPORT, AZ US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 11995,
+    "airport": "Piedmont Triad International",
+    "city": "Greensboro/High Point, NC",
+    "station": "GREENSBORO AIRPORT, NC US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 14122,
+    "airport": "Pittsburgh International",
+    "city": "Pittsburgh, PA",
+    "station": "PITTSBURGH ALLEGHENY CO AIRPORT, PA US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 11066,
+    "airport": "Port Columbus International",
+    "city": "Columbus, OH",
+    "station": "COLUMBUS OHIO STATE UNIVERSITY AIRPORT, OH US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 14057,
+    "airport": "Portland International",
+    "city": "Portland, OR",
+    "station": "PORTLAND INTERNATIONAL AIRPORT, OR US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 14321,
+    "airport": "Portland International Jetport",
+    "city": "Portland, ME",
+    "station": "PORTLAND JETPORT, ME US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 14843,
+    "airport": "Puerto Rico International",
+    "city": "San Juan, PR",
+    "station": "SAN JUAN L M MARIN INTERNATIONAL AIRPORT, PR US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 14492,
+    "airport": "Raleigh-Durham International",
+    "city": "Raleigh/Durham, NC",
+    "station": "RALEIGH AIRPORT, NC US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 14570,
+    "airport": "Reno/Tahoe International",
+    "city": "Reno, NV",
+    "station": "RENO AIRPORT, NV US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 14524,
+    "airport": "Richmond International",
+    "city": "Richmond, VA",
+    "station": "RICHMOND INTERNATIONAL AIRPORT, VA US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 14576,
+    "airport": "Rochester Monroe County",
+    "city": "Rochester, NY",
+    "station": "ROCHESTER GREATER INTERNATIONAL, NY US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 11278,
+    "airport": "Ronald Reagan Washington National",
+    "city": "Washington, DC",
+    "station": "WASHINGTON DULLES INTERNATIONAL AIRPORT, VA US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 14893,
+    "airport": "Sacramento International",
+    "city": "Sacramento, CA",
+    "station": "SACRAMENTO METROPOLITAN AIRPORT, CA US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 14869,
+    "airport": "Salt Lake City International",
+    "city": "Salt Lake City, UT",
+    "station": "SALT LAKE CITY INTERNATIONAL AIRPORT, UT US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 14683,
+    "airport": "San Antonio International",
+    "city": "San Antonio, TX",
+    "station": "SAN ANTONIO INTERNATIONAL AIRPORT, TX US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 14679,
+    "airport": "San Diego International Lindbergh Fl",
+    "city": "San Diego, CA",
+    "station": "SAN DIEGO INTERNATIONAL AIRPORT, CA US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 14771,
+    "airport": "San Francisco International",
+    "city": "San Francisco, CA",
+    "station": "SAN FRANCISCO INTERNATIONAL AIRPORT, CA US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 14831,
+    "airport": "San Jose International",
+    "city": "San Jose, CA",
+    "station": "SAN JOSE INTERNATIONAL AIRPORT, CA US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 14761,
+    "airport": "Sanford NAS",
+    "city": "Sanford, FL",
+    "station": "TALLAHASSEE REGIONAL AIRPORT, FL US",
+    "status": "excluded: Sanford, FL -> Tallahassee, FL station"
+   },
+   {
+    "airport_id": 14685,
+    "airport": "Savannah/Hilton Head International",
+    "city": "Savannah, GA",
+    "station": "SAVANNAH INTERNATIONAL AIRPORT, GA US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 14747,
+    "airport": "Seattle International",
+    "city": "Seattle, WA",
+    "station": "SEATTLE TACOMA AIRPORT, WA US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 14635,
+    "airport": "Southwest Florida International",
+    "city": "Fort Myers, FL",
+    "station": "FORT MYERS SW FLORIDA REGIONAL AIRPORT, FL US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 11884,
+    "airport": "Spokane International",
+    "city": "Spokane, WA",
+    "station": "SPOKANE INTERNATIONAL AIRPORT, WA US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 14730,
+    "airport": "Standiford Field",
+    "city": "Louisville, KY",
+    "station": "LOUISVILLE INTERNATIONAL AIRPORT, KY US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 11292,
+    "airport": "Stapleton International",
+    "city": "Denver, CO",
+    "station": "DENVER INTERNATIONAL AIRPORT, CO US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 15096,
+    "airport": "Syracuse Hancock International",
+    "city": "Syracuse, NY",
+    "station": "SYRACUSE HANCOCK INTERNATIONAL AIRPORT, NY US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 15304,
+    "airport": "Tampa International",
+    "city": "Tampa, FL",
+    "station": "TAMPA INTERNATIONAL AIRPORT, FL US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 14307,
+    "airport": "Theodore Francis Green State",
+    "city": "Providence, RI",
+    "station": "NEWPORT STATE AIRPORT, RI US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 13485,
+    "airport": "Truax Field",
+    "city": "Madison, WI",
+    "station": "MADISON DANE CO REGIONAL AIRPORT, WI US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 15376,
+    "airport": "Tucson International",
+    "city": "Tucson, AZ",
+    "station": "PHOENIX AIRPORT, AZ US",
+    "status": "excluded: Tucson -> Phoenix, AZ station"
+   },
+   {
+    "airport_id": 15370,
+    "airport": "Tulsa International",
+    "city": "Tulsa, OK",
+    "station": "OKLAHOMA CITY WILL ROGERS WORLD AIRPORT, OK US",
+    "status": "excluded: Tulsa -> Oklahoma City, OK station"
+   },
+   {
+    "airport_id": 12264,
+    "airport": "Washington Dulles International",
+    "city": "Washington, DC",
+    "station": "WASHINGTON DULLES INTERNATIONAL AIRPORT, VA US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 13851,
+    "airport": "Will Rogers World",
+    "city": "Oklahoma City, OK",
+    "station": "OKLAHOMA CITY WILL ROGERS WORLD AIRPORT, OK US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 12191,
+    "airport": "William P Hobby",
+    "city": "Houston, TX",
+    "station": "HOUSTON WILLIAM P HOBBY AIRPORT, TX US",
+    "status": "joined"
+   },
+   {
+    "airport_id": 10713,
+    "airport": "Boise Air Terminal",
+    "city": "Boise, ID",
+    "station": "BOISE AIR TERMINAL, ID US",
+    "status": "joined"
+   }
+  ],
+  "airports_joined": 88,
+  "excluded_airports": {
+   "13871": "Omaha (Eppley) -> Grand Island, NE station",
+   "13487": "Midland/Odessa -> Port Arthur, TX station",
+   "14193": "Pensacola -> Tallahassee, FL station",
+   "14761": "Sanford, FL -> Tallahassee, FL station",
+   "13796": "Oakland -> Sacramento, CA station",
+   "13830": "Kahului (Maui) -> Honolulu (Oahu) station",
+   "15376": "Tucson -> Phoenix, AZ station",
+   "15370": "Tulsa -> Oklahoma City, OK station",
+   "13891": "Ontario, CA -> Los Angeles Intl station"
+  },
+  "full_data_crosscheck": {
+   "rows": 6489062,
+   "p_delay": 0.18914413207949007,
+   "by_month": {
+    "1": {
+     "flights": 502050,
+     "p_delay": 0.1746479434319291
+    },
+    "2": {
+     "flights": 451439,
+     "p_delay": 0.217163337682389
+    },
+    "3": {
+     "flights": 554120,
+     "p_delay": 0.17431061863856204
+    },
+    "4": {
+     "flights": 533687,
+     "p_delay": 0.1850466659296554
+    },
+    "5": {
+     "flights": 558025,
+     "p_delay": 0.20344966623359168
+    },
+    "6": {
+     "flights": 557027,
+     "p_delay": 0.24392174885598006
+    },
+    "7": {
+     "flights": 578193,
+     "p_delay": 0.21314336216453675
+    },
+    "8": {
+     "flights": 579532,
+     "p_delay": 0.20604729333324132
+    },
+    "9": {
+     "flights": 529873,
+     "p_delay": 0.13745557897835897
+    },
+    "10": {
+     "flights": 561327,
+     "p_delay": 0.16166156268984033
+    },
+    "11": {
+     "flights": 531893,
+     "p_delay": 0.1420887283720598
+    },
+    "12": {
+     "flights": 551896,
+     "p_delay": 0.208551973560236
+    }
+   }
+  }
+ },
+ "overall": {
+  "scheduled": 7422037,
+  "cancelled": 134925,
+  "operated": 7287112,
+  "delayed": 1359573,
+  "p_delay": 0.18657226621465403,
+  "ci95": [
+   0.18628958327932627,
+   0.18685527960163356
+  ],
+  "p_cancel": 0.018178971621941525,
+  "airports": 360,
+  "carriers": 17,
+  "delay_minutes": {
+   "mean": 14.073153534623868,
+   "median": 0,
+   "p75": 7,
+   "p90": 39,
+   "p99": 200,
+   "max": 2710,
+   "mean_if_delayed": 70.31405816384998,
+   "median_if_delayed": 42
+  },
+  "delay_distribution": [
+   {
+    "bin": "0 (on time/early)",
+    "flights": 4768832,
+    "share": 0.6544200226372259
+   },
+   {
+    "bin": "1–14",
+    "flights": 1158707,
+    "share": 0.15900771114812012
+   },
+   {
+    "bin": "15–29",
+    "flights": 463113,
+    "share": 0.06355233733199106
+   },
+   {
+    "bin": "30–59",
+    "flights": 407150,
+    "share": 0.05587261455567034
+   },
+   {
+    "bin": "60–119",
+    "flights": 293499,
+    "share": 0.04027644971011836
+   },
+   {
+    "bin": "120–179",
+    "flights": 103869,
+    "share": 0.014253794919029651
+   },
+   {
+    "bin": "180+",
+    "flights": 91942,
+    "share": 0.012617069697844633
+   }
+  ],
+  "causes": {
+   "flights_with_cause": 1389253,
+   "minutes": {
+    "CARRIER_DELAY": 29352960.0,
+    "WEATHER_DELAY": 5282501.0,
+    "NAS_DELAY": 23044854.0,
+    "SECURITY_DELAY": 133484.0,
+    "LATE_AIRCRAFT_DELAY": 38075922.0
+   },
+   "share": {
+    "CARRIER_DELAY": 0.3061116425607287,
+    "WEATHER_DELAY": 0.055089335383507895,
+    "NAS_DELAY": 0.24032663521880515,
+    "SECURITY_DELAY": 0.0013920574448224748,
+    "LATE_AIRCRAFT_DELAY": 0.3970803293921358
+   }
+  }
+ },
+ "weather_join": {
+  "matched": 6257308,
+  "share_matched": 0.8586814639324879,
+  "flights": 5948973,
+  "share_of_operated": 0.8163690910747632,
+  "delayed": 1125288,
+  "p_delay": 0.18915668301066418,
+  "contingency": [
+   {
+    "condition": "Clear",
+    "delayed": 572578,
+    "not_delayed": 2933818,
+    "total": 3506396,
+    "p_joint_delayed": 0.09624820956491145,
+    "p_condition": 0.5894119875817221,
+    "p_delay_given": 0.16329530378200294,
+    "ci95": [
+     0.16290877997443753,
+     0.16368256534754483
+    ],
+    "mean_delay_min": 11.390268811623102,
+    "median_delay_if_delayed": 39
+   },
+   {
+    "condition": "Foggy",
+    "delayed": 117067,
+    "not_delayed": 564361,
+    "total": 681428,
+    "p_joint_delayed": 0.019678522662651184,
+    "p_condition": 0.11454548541403702,
+    "p_delay_given": 0.17179658012291835,
+    "ci95": [
+     0.17090283137042317,
+     0.17269402925994554
+    ],
+    "mean_delay_min": 12.067691671020269,
+    "median_delay_if_delayed": 39
+   },
+   {
+    "condition": "Rainy",
+    "delayed": 170909,
+    "not_delayed": 688393,
+    "total": 859302,
+    "p_joint_delayed": 0.02872916047862379,
+    "p_condition": 0.14444543621226721,
+    "p_delay_given": 0.19889282231392455,
+    "ci95": [
+     0.1980501933005673,
+     0.19973814347894284
+    ],
+    "mean_delay_min": 14.286316103069701,
+    "median_delay_if_delayed": 41
+   },
+   {
+    "condition": "Snowy",
+    "delayed": 49664,
+    "not_delayed": 111268,
+    "total": 160932,
+    "p_joint_delayed": 0.0083483317204499,
+    "p_condition": 0.027052064280675,
+    "p_delay_given": 0.30860239107200554,
+    "ci95": [
+     0.30635019549184633,
+     0.3108637237844128
+    ],
+    "mean_delay_min": 26.743873188675963,
+    "median_delay_if_delayed": 49
+   },
+   {
+    "condition": "Stormy",
+    "delayed": 215070,
+    "not_delayed": 525845,
+    "total": 740915,
+    "p_joint_delayed": 0.036152458584027866,
+    "p_condition": 0.12454502651129867,
+    "p_delay_given": 0.29027621252100444,
+    "ci95": [
+     0.2892437928944919,
+     0.2913108068669292
+    ],
+    "mean_delay_min": 24.70320752043082,
+    "median_delay_if_delayed": 50
+   }
+  ],
+  "chi_square": {
+   "statistic": 81524.72020801168,
+   "df": 4,
+   "p_value": 0.0
+  },
+  "rainy_vs_clear": {
+   "difference_pp": 3.5597518531921613,
+   "risk_ratio": 1.217994747598154
+  },
+  "correlation_with_delay_minutes": {
+   "AWND": {
+    "n": 6256625,
+    "r": 0.040186587644440115,
+    "slope": 0.5162245356754982,
+    "intercept": 9.751956847905278,
+    "mean_x": 8.333993283919044,
+    "mean_y": 14.054168661219109
+   },
+   "PRCP": {
+    "n": 6255921,
+    "r": 0.08788780528881847,
+    "slope": 13.062727205923483,
+    "intercept": 12.740365767352468,
+    "mean_x": 0.10090588420154283,
+    "mean_y": 14.058471806149726
+   },
+   "TMAX": {
+    "n": 6256095,
+    "r": 0.0005918960885765957,
+    "slope": 0.001478514667412433,
+    "intercept": 13.952533071010969,
+    "mean_x": 71.0550193051736,
+    "mean_y": 14.057588959246942
+   },
+   "SNOW": {
+    "n": 4397783,
+    "r": 0.06621283862324957,
+    "slope": 7.870961393500457,
+    "intercept": 13.764292211770425,
+    "mean_x": 0.04849811825640328,
+    "mean_y": 14.146019028223995
+   }
+  },
+  "by_wind": [
+   {
+    "key": "0–5",
+    "flights": 1086391,
+    "delayed": 178286,
+    "p_delay": 0.1641085023716139,
+    "ci95": [
+     0.1634132313698478,
+     0.164806148777437
+    ],
+    "mean_delay_min": 11.811751017819551
+   },
+   {
+    "key": "5–10",
+    "flights": 3434418,
+    "delayed": 641663,
+    "p_delay": 0.18683311117050982,
+    "ci95": [
+     0.18642123278092232,
+     0.1872456901250038
+    ],
+    "mean_delay_min": 13.699809691190763
+   },
+   {
+    "key": "10–15",
+    "flights": 1421816,
+    "delayed": 295114,
+    "p_delay": 0.20756131595086846,
+    "ci95": [
+     0.20689548020535506,
+     0.20822873191228555
+    ],
+    "mean_delay_min": 15.393740118271282
+   },
+   {
+    "key": "15–20",
+    "flights": 268931,
+    "delayed": 64472,
+    "p_delay": 0.23973435565256515,
+    "ci95": [
+     0.23812455633995805,
+     0.24135159022161018
+    ],
+    "mean_delay_min": 18.86323629481168
+   },
+   {
+    "key": "20+",
+    "flights": 45069,
+    "delayed": 12489,
+    "p_delay": 0.27710843373493976,
+    "ci95": [
+     0.2729954650167316,
+     0.2812593955658949
+    ],
+    "mean_delay_min": 24.15485144999889
+   }
+  ],
+  "by_precip": [
+   {
+    "key": "0",
+    "flights": 4367851,
+    "delayed": 731363,
+    "p_delay": 0.16744229599407123,
+    "ci95": [
+     0.16709243865815887,
+     0.16779273828840024
+    ],
+    "mean_delay_min": 11.760433219906082
+   },
+   {
+    "key": "0.01–0.10",
+    "flights": 803583,
+    "delayed": 167325,
+    "p_delay": 0.20822366824584393,
+    "ci95": [
+     0.2073372970202684,
+     0.20911282908096993
+    ],
+    "mean_delay_min": 15.324261463968252
+   },
+   {
+    "key": "0.11–0.50",
+    "flights": 679827,
+    "delayed": 166980,
+    "p_delay": 0.2456213124809694,
+    "ci95": [
+     0.24459951386198395,
+     0.24664598588936962
+    ],
+    "mean_delay_min": 19.157010533562215
+   },
+   {
+    "key": "0.51–1.00",
+    "flights": 253347,
+    "delayed": 75646,
+    "p_delay": 0.298586523621752,
+    "ci95": [
+     0.2968075693365029,
+     0.3003715858131074
+    ],
+    "mean_delay_min": 25.75813804781584
+   },
+   {
+    "key": "> 1.00",
+    "flights": 151313,
+    "delayed": 50734,
+    "p_delay": 0.33529174624784386,
+    "ci95": [
+     0.33291726917272635,
+     0.33767458617230994
+    ],
+    "mean_delay_min": 31.176124985956264
+   }
+  ],
+  "by_snow": [
+   {
+    "key": "0",
+    "flights": 4231265,
+    "delayed": 781614,
+    "p_delay": 0.1847234810393582,
+    "ci95": [
+     0.18435400173455913,
+     0.18509353280684432
+    ],
+    "mean_delay_min": 13.652870240932677
+   },
+   {
+    "key": "0.1–1.0",
+    "flights": 105213,
+    "delayed": 28728,
+    "p_delay": 0.2730461064697328,
+    "ci95": [
+     0.2703623684255656,
+     0.27574641665243826
+    ],
+    "mean_delay_min": 21.689182895649775
+   },
+   {
+    "key": "1.1–3.0",
+    "flights": 42553,
+    "delayed": 14015,
+    "p_delay": 0.32935398209291944,
+    "ci95": [
+     0.32490415281827245,
+     0.33383461861869423
+    ],
+    "mean_delay_min": 26.992291965313843
+   },
+   {
+    "key": "> 3.0",
+    "flights": 18752,
+    "delayed": 8648,
+    "p_delay": 0.4611774744027304,
+    "ci95": [
+     0.4540513618293411,
+     0.46831948976926224
+    ],
+    "mean_delay_min": 53.947472269624576
+   }
+  ],
+  "by_tmax": [
+   {
+    "key": "≤ 32",
+    "flights": 178999,
+    "delayed": 46107,
+    "p_delay": 0.25758244459466256,
+    "ci95": [
+     0.25556182250861453,
+     0.2596134713988631
+    ],
+    "mean_delay_min": 20.25610757601998
+   },
+   {
+    "key": "33–50",
+    "flights": 797307,
+    "delayed": 156211,
+    "p_delay": 0.19592327673029336,
+    "ci95": [
+     0.1950535241917383,
+     0.1967959593637388
+    ],
+    "mean_delay_min": 14.455878350497361
+   },
+   {
+    "key": "51–70",
+    "flights": 1762724,
+    "delayed": 310224,
+    "p_delay": 0.17599124990639486,
+    "ci95": [
+     0.17542978654550126,
+     0.17655412547198882
+    ],
+    "mean_delay_min": 12.23537320646908
+   },
+   {
+    "key": "71–90",
+    "flights": 2620247,
+    "delayed": 500422,
+    "p_delay": 0.19098275849566854,
+    "ci95": [
+     0.19050727085939217,
+     0.19145915221085152
+    ],
+    "mean_delay_min": 14.274435196376524
+   },
+   {
+    "key": "> 90",
+    "flights": 896818,
+    "delayed": 178968,
+    "p_delay": 0.1995588848573512,
+    "ci95": [
+     0.19873299990084112,
+     0.200387343640945
+    ],
+    "mean_delay_min": 15.414369470728731
+   }
+  ]
+ },
+ "by_month": [
+  {
+   "key": 1,
+   "flights": 567259,
+   "delayed": 98743,
+   "p_delay": 0.17407039817790462,
+   "ci95": [
+    0.17308589203641808,
+    0.1750593186580466
+   ],
+   "mean_delay_min": 13.221048938844513,
+   "share_of_flights": 0.07784414456646199
+  },
+  {
+   "key": 2,
+   "flights": 517920,
+   "delayed": 111194,
+   "p_delay": 0.2146933889403769,
+   "ci95": [
+    0.2135772396902051,
+    0.2158137704483073
+   ],
+   "mean_delay_min": 16.36488453815261,
+   "share_of_flights": 0.0710734238749178
+  },
+  {
+   "key": 3,
+   "flights": 619510,
+   "delayed": 106164,
+   "p_delay": 0.17136769382253716,
+   "ci95": [
+    0.17043137261279692,
+    0.17230809057470256
+   ],
+   "mean_delay_min": 12.364747945957289,
+   "share_of_flights": 0.08501447487015432
+  },
+  {
+   "key": 4,
+   "flights": 597535,
+   "delayed": 108523,
+   "p_delay": 0.1816178131824914,
+   "ci95": [
+    0.18064234534193266,
+    0.1825973746550473
+   ],
+   "mean_delay_min": 13.927846904365435,
+   "share_of_flights": 0.08199887692133728
+  },
+  {
+   "key": 5,
+   "flights": 623378,
+   "delayed": 124234,
+   "p_delay": 0.1992916015643799,
+   "ci95": [
+    0.198301815919046,
+    0.20028509331359218
+   ],
+   "mean_delay_min": 15.094223729422598,
+   "share_of_flights": 0.08554527500057636
+  },
+  {
+   "key": 6,
+   "flights": 623464,
+   "delayed": 149387,
+   "p_delay": 0.2396080607701487,
+   "ci95": [
+    0.238550140607815,
+    0.240669189710372
+   ],
+   "mean_delay_min": 18.546369958810775,
+   "share_of_flights": 0.08555707665807799
+  },
+  {
+   "key": 7,
+   "flights": 646101,
+   "delayed": 135492,
+   "p_delay": 0.20970715104913937,
+   "ci95": [
+    0.20871622300624254,
+    0.21070153100248212
+   ],
+   "mean_delay_min": 17.091567727027197,
+   "share_of_flights": 0.08866351992394243
+  },
+  {
+   "key": 8,
+   "flights": 647163,
+   "delayed": 131289,
+   "p_delay": 0.202868519986464,
+   "ci95": [
+    0.2018905388805287,
+    0.2038500285238813
+   ],
+   "mean_delay_min": 15.651511288500734,
+   "share_of_flights": 0.08880925667122998
+  },
+  {
+   "key": 9,
+   "flights": 595963,
+   "delayed": 81266,
+   "p_delay": 0.13636081434585703,
+   "ci95": [
+    0.13549189466321787,
+    0.13723442188983598
+   ],
+   "mean_delay_min": 10.12456478002829,
+   "share_of_flights": 0.08178315360049358
+  },
+  {
+   "key": 10,
+   "flights": 630842,
+   "delayed": 101037,
+   "p_delay": 0.1601621325149562,
+   "ci95": [
+    0.1592591671724432,
+    0.16106923665997364
+   ],
+   "mean_delay_min": 11.24207646288611,
+   "share_of_flights": 0.08656954908885715
+  },
+  {
+   "key": 11,
+   "flights": 598007,
+   "delayed": 84238,
+   "p_delay": 0.1408645718193934,
+   "ci95": [
+    0.1399851668047458,
+    0.14174859081045557
+   ],
+   "mean_delay_min": 9.944455499684786,
+   "share_of_flights": 0.08206364880902063
+  },
+  {
+   "key": 12,
+   "flights": 619970,
+   "delayed": 128006,
+   "p_delay": 0.2064712808684291,
+   "ci95": [
+    0.20546553417120478,
+    0.20748066506908458
+   ],
+   "mean_delay_min": 15.12600932303176,
+   "share_of_flights": 0.08507760001493046
+  }
+ ],
+ "by_time_block": [
+  {
+   "key": "0001-0559",
+   "flights": 199247,
+   "delayed": 16962,
+   "p_delay": 0.08513051639422425,
+   "ci95": [
+    0.08391311039053334,
+    0.08636391935959739
+   ],
+   "mean_delay_min": 8.30266453196284,
+   "share_of_flights": 0.027342382002636983
+  },
+  {
+   "key": "0600-0659",
+   "flights": 544729,
+   "delayed": 38886,
+   "p_delay": 0.07138595521809928,
+   "ci95": [
+    0.07070524791537491,
+    0.07207270769775612
+   ],
+   "mean_delay_min": 7.001817417468136,
+   "share_of_flights": 0.07475238475818678
+  },
+  {
+   "key": "0700-0759",
+   "flights": 494500,
+   "delayed": 46464,
+   "p_delay": 0.09396157735085946,
+   "ci95": [
+    0.09315149860803075,
+    0.09477796455785041
+   ],
+   "mean_delay_min": 7.971652173913044,
+   "share_of_flights": 0.0678595306343583
+  },
+  {
+   "key": "0800-0859",
+   "flights": 478512,
+   "delayed": 53476,
+   "p_delay": 0.11175477313003644,
+   "ci95": [
+    0.11086519705111647,
+    0.11265058276664808
+   ],
+   "mean_delay_min": 8.692095496037718,
+   "share_of_flights": 0.06566552016766039
+  },
+  {
+   "key": "0900-0959",
+   "flights": 429838,
+   "delayed": 57454,
+   "p_delay": 0.13366431074032542,
+   "ci95": [
+    0.13265028983604077,
+    0.13468487946443486
+   ],
+   "mean_delay_min": 9.48759067369567,
+   "share_of_flights": 0.0589860564788904
+  },
+  {
+   "key": "1000-1059",
+   "flights": 444297,
+   "delayed": 67637,
+   "p_delay": 0.15223375354773946,
+   "ci95": [
+    0.15118041769590815,
+    0.15329310302633417
+   ],
+   "mean_delay_min": 10.85305550116251,
+   "share_of_flights": 0.06097024445349543
+  },
+  {
+   "key": "1100-1159",
+   "flights": 445033,
+   "delayed": 73023,
+   "p_delay": 0.16408446115231903,
+   "ci95": [
+    0.16299926629428116,
+    0.1651754551064771
+   ],
+   "mean_delay_min": 11.845283383479428,
+   "share_of_flights": 0.06107124468513727
+  },
+  {
+   "key": "1200-1259",
+   "flights": 458447,
+   "delayed": 82402,
+   "p_delay": 0.17974160589991864,
+   "ci95": [
+    0.17863280693716765,
+    0.18085577189146418
+   ],
+   "mean_delay_min": 13.241301611745742,
+   "share_of_flights": 0.06291202879823996
+  },
+  {
+   "key": "1300-1359",
+   "flights": 407319,
+   "delayed": 79648,
+   "p_delay": 0.19554206899260776,
+   "ci95": [
+    0.19432692799565682,
+    0.19676295267072508
+   ],
+   "mean_delay_min": 14.188886351974743,
+   "share_of_flights": 0.05589580618494679
+  },
+  {
+   "key": "1400-1459",
+   "flights": 429220,
+   "delayed": 93326,
+   "p_delay": 0.21743162014817577,
+   "ci95": [
+    0.21620010808863485,
+    0.2186681900572157
+   ],
+   "mean_delay_min": 16.168687386421883,
+   "share_of_flights": 0.05890124921916941
+  },
+  {
+   "key": "1500-1559",
+   "flights": 433783,
+   "delayed": 97200,
+   "p_delay": 0.22407517122616608,
+   "ci95": [
+    0.22283676999009647,
+    0.22531845944250586
+   ],
+   "mean_delay_min": 16.50611480855635,
+   "share_of_flights": 0.05952742320963367
+  },
+  {
+   "key": "1600-1659",
+   "flights": 420660,
+   "delayed": 101294,
+   "p_delay": 0.2407977939428517,
+   "ci95": [
+    0.23950809045129173,
+    0.2420922314500466
+   ],
+   "mean_delay_min": 17.9251675937812,
+   "share_of_flights": 0.057726572612030666
+  },
+  {
+   "key": "1700-1759",
+   "flights": 464008,
+   "delayed": 116348,
+   "p_delay": 0.2507456767986759,
+   "ci95": [
+    0.2495005994605865,
+    0.25199488118755736
+   ],
+   "mean_delay_min": 19.261689453630108,
+   "share_of_flights": 0.06367515690715334
+  },
+  {
+   "key": "1800-1859",
+   "flights": 420770,
+   "delayed": 112824,
+   "p_delay": 0.2681369869524919,
+   "ci95": [
+    0.26680060635436853,
+    0.2694776011418195
+   ],
+   "mean_delay_min": 20.668624188986858,
+   "share_of_flights": 0.0577416677553467
+  },
+  {
+   "key": "1900-1959",
+   "flights": 387601,
+   "delayed": 107335,
+   "p_delay": 0.2769213701719036,
+   "ci95": [
+    0.2755148599217257,
+    0.27833230217990806
+   ],
+   "mean_delay_min": 20.8523842817743,
+   "share_of_flights": 0.05318993313125968
+  },
+  {
+   "key": "2000-2059",
+   "flights": 353451,
+   "delayed": 94451,
+   "p_delay": 0.26722515992315765,
+   "ci95": [
+    0.2657688563051586,
+    0.2686865232820807
+   ],
+   "mean_delay_min": 19.96042167089639,
+   "share_of_flights": 0.04850357727450875
+  },
+  {
+   "key": "2100-2159",
+   "flights": 227262,
+   "delayed": 62610,
+   "p_delay": 0.27549700345856326,
+   "ci95": [
+    0.27366400414946035,
+    0.27733759228495747
+   ],
+   "mean_delay_min": 19.255066839154807,
+   "share_of_flights": 0.031186840548079953
+  },
+  {
+   "key": "2200-2259",
+   "flights": 195223,
+   "delayed": 46988,
+   "p_delay": 0.2406888532601179,
+   "ci95": [
+    0.23879760884403958,
+    0.2425903025546338
+   ],
+   "mean_delay_min": 17.078945616039093,
+   "share_of_flights": 0.026790174214421297
+  },
+  {
+   "key": "2300-2359",
+   "flights": 53212,
+   "delayed": 11245,
+   "p_delay": 0.21132451326768398,
+   "ci95": [
+    0.2078767089610902,
+    0.21481399444961966
+   ],
+   "mean_delay_min": 15.771536495527325,
+   "share_of_flights": 0.007302206964844234
+  }
+ ],
+ "by_carrier": [
+  {
+   "key": "F9",
+   "flights": 133262,
+   "delayed": 34326,
+   "p_delay": 0.25758280680163886,
+   "ci95": [
+    0.25524193006036067,
+    0.2599376591522006
+   ],
+   "mean_delay_min": 18.771240113460703,
+   "share_of_flights": 0.01828735444164986,
+   "name": "Frontier Airlines Inc."
+  },
+  {
+   "key": "B6",
+   "flights": 293647,
+   "delayed": 75434,
+   "p_delay": 0.25688667004941307,
+   "ci95": [
+    0.25530957907787943,
+    0.25847012170318795
+   ],
+   "mean_delay_min": 21.811086099977185,
+   "share_of_flights": 0.040296759539307205,
+   "name": "JetBlue Airways"
+  },
+  {
+   "key": "EV",
+   "flights": 128597,
+   "delayed": 28146,
+   "p_delay": 0.21886980256149055,
+   "ci95": [
+    0.2166183283559369,
+    0.22113807214824024
+   ],
+   "mean_delay_min": 21.60014619314603,
+   "share_of_flights": 0.017647183136474367,
+   "name": "ExpressJet Airlines LLC"
+  },
+  {
+   "key": "WN",
+   "flights": 1330324,
+   "delayed": 275736,
+   "p_delay": 0.20726980795655794,
+   "ci95": [
+    0.2065818426795794,
+    0.20795946381076685
+   ],
+   "mean_delay_min": 11.786846662918206,
+   "share_of_flights": 0.18255846760692027,
+   "name": "Southwest Airlines Co."
+  },
+  {
+   "key": "AA",
+   "flights": 926625,
+   "delayed": 185167,
+   "p_delay": 0.1998294887360043,
+   "ci95": [
+    0.19901656002761212,
+    0.20064490623517692
+   ],
+   "mean_delay_min": 14.84965978686092,
+   "share_of_flights": 0.12715942886564663,
+   "name": "American Airlines Inc."
+  },
+  {
+   "key": "UA",
+   "flights": 620526,
+   "delayed": 120706,
+   "p_delay": 0.19452206676271422,
+   "ci95": [
+    0.19353908806554349,
+    0.1955088276499532
+   ],
+   "mean_delay_min": 16.436200900526327,
+   "share_of_flights": 0.08515389910296425,
+   "name": "United Air Lines Inc."
+  },
+  {
+   "key": "YV",
+   "flights": 221179,
+   "delayed": 42550,
+   "p_delay": 0.19237811908002117,
+   "ci95": [
+    0.19074076826246797,
+    0.19402615532670311
+   ],
+   "mean_delay_min": 17.414600843660565,
+   "share_of_flights": 0.030352079122703206,
+   "name": "Mesa Airlines Inc."
+  },
+  {
+   "key": "G4",
+   "flights": 104681,
+   "delayed": 20004,
+   "p_delay": 0.19109485006830274,
+   "ci95": [
+    0.1887245000447964,
+    0.19348787092737574
+   ],
+   "mean_delay_min": 14.679454724353034,
+   "share_of_flights": 0.01436522452241711,
+   "name": "Allegiant Air"
+  },
+  {
+   "key": "OH",
+   "flights": 282478,
+   "delayed": 53670,
+   "p_delay": 0.18999709711906768,
+   "ci95": [
+    0.18855463629921856,
+    0.1914479893721028
+   ],
+   "mean_delay_min": 14.344876415154454,
+   "share_of_flights": 0.03876405357842723,
+   "name": "PSA Airlines Inc."
+  },
+  {
+   "key": "NK",
+   "flights": 201255,
+   "delayed": 37396,
+   "p_delay": 0.18581401704305484,
+   "ci95": [
+    0.18412069713211562,
+    0.1875193307874812
+   ],
+   "mean_delay_min": 14.181347047278328,
+   "share_of_flights": 0.02761793698244243,
+   "name": "Spirit Air Lines"
+  },
+  {
+   "key": "MQ",
+   "flights": 315577,
+   "delayed": 56676,
+   "p_delay": 0.17959483739309265,
+   "ci95": [
+    0.1782595058344307,
+    0.18093796931905817
+   ],
+   "mean_delay_min": 12.987337480234618,
+   "share_of_flights": 0.043306182202222224,
+   "name": "Envoy Air"
+  },
+  {
+   "key": "OO",
+   "flights": 818992,
+   "delayed": 143304,
+   "p_delay": 0.17497606814230177,
+   "ci95": [
+    0.1741547238654412,
+    0.17580046143598846
+   ],
+   "mean_delay_min": 16.355311162990603,
+   "share_of_flights": 0.11238910558805738,
+   "name": "SkyWest Airlines Inc."
+  },
+  {
+   "key": "9E",
+   "flights": 252875,
+   "delayed": 42574,
+   "p_delay": 0.1683598615916955,
+   "ci95": [
+    0.16690648345056605,
+    0.16982331556145677
+   ],
+   "mean_delay_min": 14.303126050420168,
+   "share_of_flights": 0.03470167605493095,
+   "name": "Endeavor Air Inc."
+  },
+  {
+   "key": "YX",
+   "flights": 321457,
+   "delayed": 52390,
+   "p_delay": 0.16297669672771165,
+   "ci95": [
+    0.1617039392419182,
+    0.1642575090741585
+   ],
+   "mean_delay_min": 12.720827357935898,
+   "share_of_flights": 0.044113086226752106,
+   "name": "Republic Airline"
+  },
+  {
+   "key": "AS",
+   "flights": 261739,
+   "delayed": 41906,
+   "p_delay": 0.1601060598535182,
+   "ci95": [
+    0.15870619966638658,
+    0.16151589692152887
+   ],
+   "mean_delay_min": 9.81917482683131,
+   "share_of_flights": 0.03591807014905219,
+   "name": "Alaska Airlines Inc."
+  },
+  {
+   "key": "DL",
+   "flights": 990144,
+   "delayed": 142381,
+   "p_delay": 0.14379827580634735,
+   "ci95": [
+    0.14310852126240814,
+    0.1444907942491685
+   ],
+   "mean_delay_min": 10.850869166505074,
+   "share_of_flights": 0.13587605075920337,
+   "name": "Delta Air Lines Inc."
+  },
+  {
+   "key": "HA",
+   "flights": 83754,
+   "delayed": 7207,
+   "p_delay": 0.08604962151061442,
+   "ci95": [
+    0.08416931005328852,
+    0.08796790370132664
+   ],
+   "mean_delay_min": 5.028476251880507,
+   "share_of_flights": 0.011493442120829213,
+   "name": "Hawaiian Airlines Inc."
+  }
+ ],
+ "busiest_airports": [
+  {
+   "key": 10397,
+   "flights": 392603,
+   "delayed": 65892,
+   "p_delay": 0.16783366403211386,
+   "ci95": [
+    0.16666791159095856,
+    0.16900591663152975
+   ],
+   "mean_delay_min": 10.988515115778535,
+   "share_of_flights": 0.05387635046641248,
+   "code": "ATL"
+  },
+  {
+   "key": 13930,
+   "flights": 329045,
+   "delayed": 74049,
+   "p_delay": 0.22504216748469055,
+   "ci95": [
+    0.2236184891050835,
+    0.22647226581816735
+   ],
+   "mean_delay_min": 17.380288410399793,
+   "share_of_flights": 0.04515437665840734,
+   "code": "ORD"
+  },
+  {
+   "key": 11298,
+   "flights": 296449,
+   "delayed": 65497,
+   "p_delay": 0.22093850881601895,
+   "ci95": [
+    0.21944866650351025,
+    0.22243558332925178
+   ],
+   "mean_delay_min": 15.55205111165833,
+   "share_of_flights": 0.0406812740081393,
+   "code": "DFW"
+  },
+  {
+   "key": 11292,
+   "flights": 247175,
+   "delayed": 55609,
+   "p_delay": 0.22497825427328816,
+   "ci95": [
+    0.22333637193303554,
+    0.22662868495615182
+   ],
+   "mean_delay_min": 15.841375543643167,
+   "share_of_flights": 0.033919473174009125,
+   "code": "DEN"
+  },
+  {
+   "key": 11057,
+   "flights": 231855,
+   "delayed": 44958,
+   "p_delay": 0.19390567380474866,
+   "ci95": [
+    0.19230148375490896,
+    0.19552000665304692
+   ],
+   "mean_delay_min": 13.47644864247051,
+   "share_of_flights": 0.03181713139581222,
+   "code": "CLT"
+  },
+  {
+   "key": 12892,
+   "flights": 217120,
+   "delayed": 41061,
+   "p_delay": 0.18911661753868828,
+   "ci95": [
+    0.18747493881863989,
+    0.19076929685364422
+   ],
+   "mean_delay_min": 12.944053979366249,
+   "share_of_flights": 0.029795068334341507,
+   "code": "LAX"
+  },
+  {
+   "key": 12266,
+   "flights": 177108,
+   "delayed": 33993,
+   "p_delay": 0.1919337353479233,
+   "ci95": [
+    0.19010630316289628,
+    0.19377453111000437
+   ],
+   "mean_delay_min": 15.575123653364049,
+   "share_of_flights": 0.024304278567421497,
+   "code": "IAH"
+  },
+  {
+   "key": 14107,
+   "flights": 172969,
+   "delayed": 33027,
+   "p_delay": 0.19094172944284815,
+   "ci95": [
+    0.1890963310511649,
+    0.19280085524526341
+   ],
+   "mean_delay_min": 12.272875486358828,
+   "share_of_flights": 0.02373628949301177,
+   "code": "PHX"
+  },
+  {
+   "key": 14771,
+   "flights": 167270,
+   "delayed": 36856,
+   "p_delay": 0.22033837508220241,
+   "ci95": [
+    0.21835854485448664,
+    0.2223310502186856
+   ],
+   "mean_delay_min": 16.586674239253902,
+   "share_of_flights": 0.022954223840665547,
+   "code": "SFO"
+  },
+  {
+   "key": 12953,
+   "flights": 166709,
+   "delayed": 37766,
+   "p_delay": 0.22653845923135524,
+   "ci95": [
+    0.22453540838962208,
+    0.22855411247658905
+   ],
+   "mean_delay_min": 18.318825018445313,
+   "share_of_flights": 0.02287723860975377,
+   "code": "LGA"
+  },
+  {
+   "key": 12889,
+   "flights": 161922,
+   "delayed": 32294,
+   "p_delay": 0.19944170650066081,
+   "ci95": [
+    0.19750259232753414,
+    0.20139508130442973
+   ],
+   "mean_delay_min": 13.176671483800842,
+   "share_of_flights": 0.022220325418355037,
+   "code": "LAS"
+  },
+  {
+   "key": 11433,
+   "flights": 160050,
+   "delayed": 25764,
+   "p_delay": 0.1609746954076851,
+   "ci95": [
+    0.15918236269381608,
+    0.16278330204207364
+   ],
+   "mean_delay_min": 12.980724773508278,
+   "share_of_flights": 0.021963433524831235,
+   "code": "DTW"
+  },
+  {
+   "key": 13487,
+   "flights": 159278,
+   "delayed": 24220,
+   "p_delay": 0.15206117605695701,
+   "ci95": [
+    0.15030612491113723,
+    0.15383300994025254
+   ],
+   "mean_delay_min": 12.100528635467548,
+   "share_of_flights": 0.02185749306446779,
+   "code": "MSP"
+  },
+  {
+   "key": 10721,
+   "flights": 147467,
+   "delayed": 31417,
+   "p_delay": 0.213044274312219,
+   "ci95": [
+    0.21096193405416638,
+    0.21514156435415036
+   ],
+   "mean_delay_min": 17.395457966867163,
+   "share_of_flights": 0.020236686358052407,
+   "code": "BOS"
+  },
+  {
+   "key": 14747,
+   "flights": 141698,
+   "delayed": 24304,
+   "p_delay": 0.17151971093452273,
+   "ci95": [
+    0.16956587518172644,
+    0.1734913565265061
+   ],
+   "mean_delay_min": 10.989809312763764,
+   "share_of_flights": 0.01944501470541416,
+   "code": "SEA"
+  }
+ ],
+ "scatter_sample": [
+  {
+   "month": 5,
+   "day": 28,
+   "origin": "CLT",
+   "carrier": "OH",
+   "condition": "Foggy",
+   "awnd": 6.49,
+   "prcp": 0.0,
+   "tmax": 95.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 25,
+   "origin": "DFW",
+   "carrier": "MQ",
+   "condition": "Clear",
+   "awnd": 10.07,
+   "prcp": 0.0,
+   "tmax": 91.0,
+   "delay_min": 18.0,
+   "delayed": 1
+  },
+  {
+   "month": 6,
+   "day": 21,
+   "origin": "ABQ",
+   "carrier": "OO",
+   "condition": "Clear",
+   "awnd": 11.41,
+   "prcp": 0.0,
+   "tmax": 92.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 6,
+   "origin": "RNO",
+   "carrier": "OO",
+   "condition": "Snowy",
+   "awnd": 11.18,
+   "prcp": 0.77,
+   "tmax": 44.0,
+   "delay_min": 939.0,
+   "delayed": 1
+  },
+  {
+   "month": 2,
+   "day": 7,
+   "origin": "CLT",
+   "carrier": "OH",
+   "condition": "Clear",
+   "awnd": 11.41,
+   "prcp": 0.0,
+   "tmax": 79.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 25,
+   "origin": "BUR",
+   "carrier": "OO",
+   "condition": "Clear",
+   "awnd": 9.4,
+   "prcp": 0.0,
+   "tmax": 46.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 21,
+   "origin": "SAN",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 7.16,
+   "prcp": 0.0,
+   "tmax": 75.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 7,
+   "origin": "FLL",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 10.29,
+   "prcp": 0.0,
+   "tmax": 74.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 9,
+   "day": 26,
+   "origin": "DTW",
+   "carrier": "DL",
+   "condition": "Rainy",
+   "awnd": 9.62,
+   "prcp": 0.01,
+   "tmax": 71.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 9,
+   "day": 24,
+   "origin": "SAV",
+   "carrier": "YX",
+   "condition": "Foggy",
+   "awnd": 4.03,
+   "prcp": 0.0,
+   "tmax": 96.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 19,
+   "origin": "JFK",
+   "carrier": "AA",
+   "condition": "Foggy",
+   "awnd": 9.4,
+   "prcp": 0.0,
+   "tmax": 95.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 21,
+   "origin": "EWR",
+   "carrier": "UA",
+   "condition": "Rainy",
+   "awnd": 9.4,
+   "prcp": 1.0,
+   "tmax": 48.0,
+   "delay_min": 2.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 12,
+   "origin": "BNA",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 8.95,
+   "prcp": 0.0,
+   "tmax": 53.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 26,
+   "origin": "RDU",
+   "carrier": "UA",
+   "condition": "Foggy",
+   "awnd": 6.49,
+   "prcp": 0.0,
+   "tmax": 79.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 7,
+   "origin": "BHM",
+   "carrier": "OH",
+   "condition": "Stormy",
+   "awnd": 8.72,
+   "prcp": 0.27,
+   "tmax": 85.0,
+   "delay_min": 45.0,
+   "delayed": 1
+  },
+  {
+   "month": 9,
+   "day": 5,
+   "origin": "BUF",
+   "carrier": "YX",
+   "condition": "Clear",
+   "awnd": 3.58,
+   "prcp": 0.0,
+   "tmax": 73.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 12,
+   "origin": "MDW",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 9.4,
+   "prcp": 0.0,
+   "tmax": 17.0,
+   "delay_min": 16.0,
+   "delayed": 1
+  },
+  {
+   "month": 5,
+   "day": 10,
+   "origin": "TPA",
+   "carrier": "AA",
+   "condition": "Stormy",
+   "awnd": 6.04,
+   "prcp": 0.01,
+   "tmax": 89.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 2,
+   "origin": "DTW",
+   "carrier": "DL",
+   "condition": "Rainy",
+   "awnd": 10.51,
+   "prcp": 0.01,
+   "tmax": 38.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 31,
+   "origin": "EWR",
+   "carrier": "UA",
+   "condition": "Foggy",
+   "awnd": 8.28,
+   "prcp": 0.0,
+   "tmax": 83.0,
+   "delay_min": 212.0,
+   "delayed": 1
+  },
+  {
+   "month": 3,
+   "day": 19,
+   "origin": "DTW",
+   "carrier": "9E",
+   "condition": "Clear",
+   "awnd": 6.71,
+   "prcp": 0.0,
+   "tmax": 49.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 29,
+   "origin": "LAS",
+   "carrier": "G4",
+   "condition": "Clear",
+   "awnd": 10.29,
+   "prcp": 0.0,
+   "tmax": 112.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 30,
+   "origin": "TYS",
+   "carrier": "EV",
+   "condition": "Rainy",
+   "awnd": 14.76,
+   "prcp": 0.29,
+   "tmax": 78.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 12,
+   "origin": "SMF",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 10.96,
+   "prcp": 0.0,
+   "tmax": 63.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 9,
+   "origin": "ORD",
+   "carrier": "OO",
+   "condition": "Rainy",
+   "awnd": 12.97,
+   "prcp": 0.05,
+   "tmax": 47.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 9,
+   "day": 6,
+   "origin": "JFK",
+   "carrier": "AA",
+   "condition": "Rainy",
+   "awnd": 16.33,
+   "prcp": 0.03,
+   "tmax": 69.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 26,
+   "origin": "CVG",
+   "carrier": "OH",
+   "condition": "Foggy",
+   "awnd": 2.68,
+   "prcp": 0.0,
+   "tmax": 63.0,
+   "delay_min": 2.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 6,
+   "origin": "MCO",
+   "carrier": "WN",
+   "condition": "Foggy",
+   "awnd": 9.84,
+   "prcp": 0.0,
+   "tmax": 87.0,
+   "delay_min": 25.0,
+   "delayed": 1
+  },
+  {
+   "month": 9,
+   "day": 23,
+   "origin": "BNA",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 5.82,
+   "prcp": 0.0,
+   "tmax": 82.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 15,
+   "origin": "PHX",
+   "carrier": "DL",
+   "condition": "Foggy",
+   "awnd": 5.14,
+   "prcp": 0.0,
+   "tmax": 67.0,
+   "delay_min": 1.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 5,
+   "origin": "SJU",
+   "carrier": "B6",
+   "condition": "Clear",
+   "awnd": 5.37,
+   "prcp": 0.0,
+   "tmax": 89.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 15,
+   "origin": "PHX",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 7.83,
+   "prcp": 0.0,
+   "tmax": 100.0,
+   "delay_min": 255.0,
+   "delayed": 1
+  },
+  {
+   "month": 8,
+   "day": 26,
+   "origin": "DTW",
+   "carrier": "DL",
+   "condition": "Rainy",
+   "awnd": 10.51,
+   "prcp": 0.47,
+   "tmax": 74.0,
+   "delay_min": 8.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 19,
+   "origin": "ORD",
+   "carrier": "MQ",
+   "condition": "Clear",
+   "awnd": 4.7,
+   "prcp": 0.0,
+   "tmax": 85.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 18,
+   "origin": "DEN",
+   "carrier": "NK",
+   "condition": "Rainy",
+   "awnd": 8.95,
+   "prcp": 0.03,
+   "tmax": 62.0,
+   "delay_min": 196.0,
+   "delayed": 1
+  },
+  {
+   "month": 8,
+   "day": 21,
+   "origin": "MDW",
+   "carrier": "WN",
+   "condition": "Stormy",
+   "awnd": 6.26,
+   "prcp": 0.02,
+   "tmax": 83.0,
+   "delay_min": 18.0,
+   "delayed": 1
+  },
+  {
+   "month": 3,
+   "day": 22,
+   "origin": "MCO",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 8.5,
+   "prcp": 0.0,
+   "tmax": 78.0,
+   "delay_min": 164.0,
+   "delayed": 1
+  },
+  {
+   "month": 9,
+   "day": 19,
+   "origin": "CLE",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 9.62,
+   "prcp": 0.0,
+   "tmax": 83.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 6,
+   "origin": "SNA",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 6.04,
+   "prcp": 0.0,
+   "tmax": 83.0,
+   "delay_min": 3.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 20,
+   "origin": "CLT",
+   "carrier": "AA",
+   "condition": "Stormy",
+   "awnd": 9.17,
+   "prcp": 0.19,
+   "tmax": 89.0,
+   "delay_min": 54.0,
+   "delayed": 1
+  },
+  {
+   "month": 11,
+   "day": 9,
+   "origin": "BOS",
+   "carrier": "B6",
+   "condition": "Clear",
+   "awnd": 9.62,
+   "prcp": 0.0,
+   "tmax": 41.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 26,
+   "origin": "DTW",
+   "carrier": "9E",
+   "condition": "Clear",
+   "awnd": 5.14,
+   "prcp": 0.0,
+   "tmax": 84.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 7,
+   "origin": "ORD",
+   "carrier": "AA",
+   "condition": "Stormy",
+   "awnd": 12.97,
+   "prcp": 0.71,
+   "tmax": 44.0,
+   "delay_min": 72.0,
+   "delayed": 1
+  },
+  {
+   "month": 10,
+   "day": 10,
+   "origin": "MCO",
+   "carrier": "WN",
+   "condition": "Rainy",
+   "awnd": 11.86,
+   "prcp": 0.04,
+   "tmax": 88.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 30,
+   "origin": "BOS",
+   "carrier": "B6",
+   "condition": "Rainy",
+   "awnd": 7.61,
+   "prcp": 0.23,
+   "tmax": 66.0,
+   "delay_min": 128.0,
+   "delayed": 1
+  },
+  {
+   "month": 10,
+   "day": 22,
+   "origin": "BHM",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 7.83,
+   "prcp": 0.0,
+   "tmax": 72.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 21,
+   "origin": "AUS",
+   "carrier": "DL",
+   "condition": "Rainy",
+   "awnd": 8.5,
+   "prcp": 0.14,
+   "tmax": 88.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 13,
+   "origin": "SEA",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 8.05,
+   "prcp": 0.0,
+   "tmax": 80.0,
+   "delay_min": 37.0,
+   "delayed": 1
+  },
+  {
+   "month": 11,
+   "day": 30,
+   "origin": "MCI",
+   "carrier": "DL",
+   "condition": "Rainy",
+   "awnd": 16.78,
+   "prcp": 0.01,
+   "tmax": 57.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 30,
+   "origin": "BNA",
+   "carrier": "AA",
+   "condition": null,
+   "awnd": 11.41,
+   "prcp": 0.12,
+   "tmax": 71.0,
+   "delay_min": 144.0,
+   "delayed": 1
+  },
+  {
+   "month": 6,
+   "day": 28,
+   "origin": "BDL",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 4.25,
+   "prcp": 0.0,
+   "tmax": 92.0,
+   "delay_min": 107.0,
+   "delayed": 1
+  },
+  {
+   "month": 6,
+   "day": 14,
+   "origin": "ORD",
+   "carrier": "UA",
+   "condition": "Rainy",
+   "awnd": 14.54,
+   "prcp": 0.05,
+   "tmax": 80.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 29,
+   "origin": "IAH",
+   "carrier": "UA",
+   "condition": "Clear",
+   "awnd": 8.95,
+   "prcp": 0.0,
+   "tmax": 85.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 10,
+   "origin": "PHL",
+   "carrier": "AA",
+   "condition": "Rainy",
+   "awnd": 9.62,
+   "prcp": 0.01,
+   "tmax": 82.0,
+   "delay_min": 294.0,
+   "delayed": 1
+  },
+  {
+   "month": 4,
+   "day": 29,
+   "origin": "PHL",
+   "carrier": "WN",
+   "condition": "Rainy",
+   "awnd": 7.83,
+   "prcp": 0.04,
+   "tmax": 64.0,
+   "delay_min": 6.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 26,
+   "origin": "DEN",
+   "carrier": "WN",
+   "condition": "Foggy",
+   "awnd": 5.59,
+   "prcp": 0.0,
+   "tmax": 46.0,
+   "delay_min": 25.0,
+   "delayed": 1
+  },
+  {
+   "month": 1,
+   "day": 13,
+   "origin": "MSY",
+   "carrier": "WN",
+   "condition": "Foggy",
+   "awnd": 10.51,
+   "prcp": 0.0,
+   "tmax": 58.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 15,
+   "origin": "IAD",
+   "carrier": "UA",
+   "condition": "Clear",
+   "awnd": 3.58,
+   "prcp": 0.0,
+   "tmax": 92.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 4,
+   "origin": "DCA",
+   "carrier": "AA",
+   "condition": "Rainy",
+   "awnd": 3.8,
+   "prcp": 0.03,
+   "tmax": 46.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 23,
+   "origin": "DEN",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 6.93,
+   "prcp": 0.0,
+   "tmax": 64.0,
+   "delay_min": 25.0,
+   "delayed": 1
+  },
+  {
+   "month": 10,
+   "day": 8,
+   "origin": "ORD",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 4.25,
+   "prcp": 0.0,
+   "tmax": 70.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 12,
+   "origin": "CLT",
+   "carrier": "OH",
+   "condition": "Rainy",
+   "awnd": 8.5,
+   "prcp": 1.26,
+   "tmax": 71.0,
+   "delay_min": 1.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 14,
+   "origin": "SFO",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 10.29,
+   "prcp": 0.0,
+   "tmax": 94.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 21,
+   "origin": "DEN",
+   "carrier": "UA",
+   "condition": "Foggy",
+   "awnd": 10.07,
+   "prcp": 0.0,
+   "tmax": 33.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 19,
+   "origin": "DEN",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 10.07,
+   "prcp": 0.0,
+   "tmax": 46.0,
+   "delay_min": 11.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 30,
+   "origin": "MCO",
+   "carrier": "F9",
+   "condition": "Clear",
+   "awnd": 6.04,
+   "prcp": 0.0,
+   "tmax": 91.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 20,
+   "origin": "FLL",
+   "carrier": "DL",
+   "condition": null,
+   "awnd": 18.12,
+   "prcp": 0.04,
+   "tmax": 77.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 8,
+   "origin": "SFO",
+   "carrier": "UA",
+   "condition": "Clear",
+   "awnd": 7.61,
+   "prcp": 0.0,
+   "tmax": 62.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 8,
+   "origin": "MCO",
+   "carrier": "UA",
+   "condition": "Stormy",
+   "awnd": 6.93,
+   "prcp": 0.62,
+   "tmax": 93.0,
+   "delay_min": 32.0,
+   "delayed": 1
+  },
+  {
+   "month": 2,
+   "day": 11,
+   "origin": "BNA",
+   "carrier": "OH",
+   "condition": null,
+   "awnd": 4.25,
+   "prcp": 0.31,
+   "tmax": 59.0,
+   "delay_min": 29.0,
+   "delayed": 1
+  },
+  {
+   "month": 8,
+   "day": 29,
+   "origin": "SJC",
+   "carrier": "OO",
+   "condition": "Clear",
+   "awnd": 8.05,
+   "prcp": 0.0,
+   "tmax": 80.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 8,
+   "origin": "ORD",
+   "carrier": "AA",
+   "condition": "Stormy",
+   "awnd": 10.07,
+   "prcp": 0.01,
+   "tmax": 87.0,
+   "delay_min": 106.0,
+   "delayed": 1
+  },
+  {
+   "month": 5,
+   "day": 26,
+   "origin": "SDF",
+   "carrier": "YX",
+   "condition": "Stormy",
+   "awnd": 6.71,
+   "prcp": 0.41,
+   "tmax": 88.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 24,
+   "origin": "PHX",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 8.72,
+   "prcp": 0.0,
+   "tmax": 85.0,
+   "delay_min": 41.0,
+   "delayed": 1
+  },
+  {
+   "month": 5,
+   "day": 6,
+   "origin": "DFW",
+   "carrier": "MQ",
+   "condition": "Clear",
+   "awnd": 11.41,
+   "prcp": 0.0,
+   "tmax": 81.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 9,
+   "day": 5,
+   "origin": "GEG",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 5.14,
+   "prcp": 0.0,
+   "tmax": 87.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 19,
+   "origin": "BUR",
+   "carrier": "WN",
+   "condition": "Stormy",
+   "awnd": 5.59,
+   "prcp": 0.0,
+   "tmax": 92.0,
+   "delay_min": 1.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 28,
+   "origin": "ORD",
+   "carrier": "UA",
+   "condition": "Stormy",
+   "awnd": 6.93,
+   "prcp": 0.28,
+   "tmax": 48.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 9,
+   "origin": "DFW",
+   "carrier": "OO",
+   "condition": "Clear",
+   "awnd": 11.18,
+   "prcp": 0.0,
+   "tmax": 102.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 9,
+   "day": 10,
+   "origin": "SAN",
+   "carrier": "UA",
+   "condition": "Clear",
+   "awnd": 8.95,
+   "prcp": 0.0,
+   "tmax": 74.0,
+   "delay_min": 40.0,
+   "delayed": 1
+  },
+  {
+   "month": 3,
+   "day": 28,
+   "origin": "ATL",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 4.92,
+   "prcp": 0.0,
+   "tmax": 69.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 8,
+   "origin": "DTW",
+   "carrier": "WN",
+   "condition": "Stormy",
+   "awnd": 13.42,
+   "prcp": 0.02,
+   "tmax": 52.0,
+   "delay_min": 7.0,
+   "delayed": 0
+  },
+  {
+   "month": 9,
+   "day": 24,
+   "origin": "IAH",
+   "carrier": "YV",
+   "condition": "Clear",
+   "awnd": 10.07,
+   "prcp": 0.0,
+   "tmax": 90.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 15,
+   "origin": "RNO",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 3.36,
+   "prcp": 0.0,
+   "tmax": 79.0,
+   "delay_min": 10.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 7,
+   "origin": "LGA",
+   "carrier": "9E",
+   "condition": "Clear",
+   "awnd": 9.84,
+   "prcp": 0.0,
+   "tmax": 35.0,
+   "delay_min": 2.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 14,
+   "origin": "IND",
+   "carrier": "MQ",
+   "condition": "Stormy",
+   "awnd": 19.91,
+   "prcp": 0.5,
+   "tmax": 71.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 14,
+   "origin": "SLC",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 10.96,
+   "prcp": 0.0,
+   "tmax": 62.0,
+   "delay_min": 4.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 2,
+   "origin": "BWI",
+   "carrier": "WN",
+   "condition": "Rainy",
+   "awnd": 5.14,
+   "prcp": 0.03,
+   "tmax": 49.0,
+   "delay_min": 6.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 13,
+   "origin": "ATL",
+   "carrier": "OO",
+   "condition": "Clear",
+   "awnd": 7.38,
+   "prcp": 0.0,
+   "tmax": 83.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 19,
+   "origin": "MCO",
+   "carrier": "UA",
+   "condition": "Stormy",
+   "awnd": 15.43,
+   "prcp": 0.52,
+   "tmax": 87.0,
+   "delay_min": 91.0,
+   "delayed": 1
+  },
+  {
+   "month": 2,
+   "day": 5,
+   "origin": "LGA",
+   "carrier": "EV",
+   "condition": "Foggy",
+   "awnd": 5.59,
+   "prcp": 0.0,
+   "tmax": 65.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 4,
+   "origin": "PDX",
+   "carrier": "AS",
+   "condition": "Rainy",
+   "awnd": 4.25,
+   "prcp": 0.12,
+   "tmax": 61.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 17,
+   "origin": "IAH",
+   "carrier": "YV",
+   "condition": null,
+   "awnd": 9.62,
+   "prcp": 0.03,
+   "tmax": 81.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 3,
+   "origin": "PIT",
+   "carrier": "NK",
+   "condition": null,
+   "awnd": 4.7,
+   "prcp": 0.19,
+   "tmax": 83.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 9,
+   "day": 7,
+   "origin": "ORD",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 8.28,
+   "prcp": 0.0,
+   "tmax": 78.0,
+   "delay_min": 2.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 20,
+   "origin": "RDU",
+   "carrier": "AA",
+   "condition": "Rainy",
+   "awnd": 6.71,
+   "prcp": 0.05,
+   "tmax": 53.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 28,
+   "origin": "ATL",
+   "carrier": "9E",
+   "condition": "Foggy",
+   "awnd": 8.5,
+   "prcp": 0.0,
+   "tmax": 90.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 10,
+   "origin": "SEA",
+   "carrier": "WN",
+   "condition": "Rainy",
+   "awnd": 5.37,
+   "prcp": 0.17,
+   "tmax": 70.0,
+   "delay_min": 11.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 13,
+   "origin": "DAY",
+   "carrier": "MQ",
+   "condition": null,
+   "awnd": 11.63,
+   "prcp": 0.11,
+   "tmax": 65.0,
+   "delay_min": 9.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 13,
+   "origin": "CVG",
+   "carrier": "UA",
+   "condition": null,
+   "awnd": 11.41,
+   "prcp": 0.08,
+   "tmax": 69.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 12,
+   "origin": "PHX",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 7.38,
+   "prcp": 0.0,
+   "tmax": 82.0,
+   "delay_min": 9.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 9,
+   "origin": "BHM",
+   "carrier": "OO",
+   "condition": "Clear",
+   "awnd": 5.82,
+   "prcp": 0.0,
+   "tmax": 85.0,
+   "delay_min": 21.0,
+   "delayed": 1
+  },
+  {
+   "month": 8,
+   "day": 31,
+   "origin": "PHX",
+   "carrier": "UA",
+   "condition": "Clear",
+   "awnd": 5.82,
+   "prcp": 0.0,
+   "tmax": 107.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 10,
+   "origin": "MCO",
+   "carrier": "NK",
+   "condition": "Clear",
+   "awnd": 10.51,
+   "prcp": 0.0,
+   "tmax": 61.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 10,
+   "origin": "MIA",
+   "carrier": "YX",
+   "condition": "Clear",
+   "awnd": 9.4,
+   "prcp": 0.0,
+   "tmax": 84.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 2,
+   "origin": "ATL",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 3.8,
+   "prcp": 0.0,
+   "tmax": 96.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 22,
+   "origin": "SEA",
+   "carrier": "AS",
+   "condition": "Clear",
+   "awnd": 5.82,
+   "prcp": 0.0,
+   "tmax": 83.0,
+   "delay_min": 9.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 1,
+   "origin": "DCA",
+   "carrier": "OH",
+   "condition": "Foggy",
+   "awnd": 3.8,
+   "prcp": 0.0,
+   "tmax": 92.0,
+   "delay_min": 295.0,
+   "delayed": 1
+  },
+  {
+   "month": 5,
+   "day": 14,
+   "origin": "DEN",
+   "carrier": "UA",
+   "condition": "Clear",
+   "awnd": 9.62,
+   "prcp": 0.0,
+   "tmax": 80.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 22,
+   "origin": "PDX",
+   "carrier": "AS",
+   "condition": "Rainy",
+   "awnd": 6.49,
+   "prcp": 0.15,
+   "tmax": 64.0,
+   "delay_min": 3.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 29,
+   "origin": "RDU",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 2.91,
+   "prcp": 0.0,
+   "tmax": 86.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 27,
+   "origin": "MCI",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 10.51,
+   "prcp": 0.0,
+   "tmax": 89.0,
+   "delay_min": 3.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 23,
+   "origin": "RDU",
+   "carrier": "9E",
+   "condition": "Rainy",
+   "awnd": 7.83,
+   "prcp": 0.04,
+   "tmax": 64.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 24,
+   "origin": "PIT",
+   "carrier": "UA",
+   "condition": "Clear",
+   "awnd": 7.83,
+   "prcp": 0.0,
+   "tmax": 68.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 6,
+   "origin": "LGA",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 8.95,
+   "prcp": 0.0,
+   "tmax": 67.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 23,
+   "origin": "CHS",
+   "carrier": "UA",
+   "condition": "Clear",
+   "awnd": 5.37,
+   "prcp": 0.0,
+   "tmax": 74.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 12,
+   "origin": "DTW",
+   "carrier": "9E",
+   "condition": "Snowy",
+   "awnd": 14.09,
+   "prcp": 0.64,
+   "tmax": 35.0,
+   "delay_min": 96.0,
+   "delayed": 1
+  },
+  {
+   "month": 9,
+   "day": 3,
+   "origin": "RDU",
+   "carrier": "B6",
+   "condition": "Clear",
+   "awnd": 3.13,
+   "prcp": 0.0,
+   "tmax": 91.0,
+   "delay_min": 176.0,
+   "delayed": 1
+  },
+  {
+   "month": 5,
+   "day": 4,
+   "origin": "DFW",
+   "carrier": "AA",
+   "condition": null,
+   "awnd": 9.17,
+   "prcp": 0.13,
+   "tmax": 77.0,
+   "delay_min": 3.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 17,
+   "origin": "ORD",
+   "carrier": "UA",
+   "condition": "Snowy",
+   "awnd": 11.18,
+   "prcp": 0.2,
+   "tmax": 27.0,
+   "delay_min": 163.0,
+   "delayed": 1
+  },
+  {
+   "month": 12,
+   "day": 3,
+   "origin": "ATL",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 11.18,
+   "prcp": 0.0,
+   "tmax": 49.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 8,
+   "origin": "PVD",
+   "carrier": "B6",
+   "condition": "Clear",
+   "awnd": 3.8,
+   "prcp": 0.0,
+   "tmax": 79.0,
+   "delay_min": 59.0,
+   "delayed": 1
+  },
+  {
+   "month": 12,
+   "day": 23,
+   "origin": "CLT",
+   "carrier": "AA",
+   "condition": "Rainy",
+   "awnd": 12.3,
+   "prcp": 0.98,
+   "tmax": 52.0,
+   "delay_min": 8.0,
+   "delayed": 0
+  },
+  {
+   "month": 9,
+   "day": 11,
+   "origin": "MSY",
+   "carrier": "WN",
+   "condition": null,
+   "awnd": 6.93,
+   "prcp": 0.02,
+   "tmax": 95.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 7,
+   "origin": "BWI",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 5.37,
+   "prcp": 0.0,
+   "tmax": 89.0,
+   "delay_min": 25.0,
+   "delayed": 1
+  },
+  {
+   "month": 11,
+   "day": 10,
+   "origin": "DFW",
+   "carrier": "AS",
+   "condition": "Clear",
+   "awnd": 10.74,
+   "prcp": 0.0,
+   "tmax": 74.0,
+   "delay_min": 26.0,
+   "delayed": 1
+  },
+  {
+   "month": 5,
+   "day": 21,
+   "origin": "RSW",
+   "carrier": "DL",
+   "condition": "Rainy",
+   "awnd": 5.14,
+   "prcp": 0.49,
+   "tmax": 93.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 10,
+   "origin": "BDL",
+   "carrier": "B6",
+   "condition": "Rainy",
+   "awnd": 7.83,
+   "prcp": 0.15,
+   "tmax": 53.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 1,
+   "origin": "DTW",
+   "carrier": "DL",
+   "condition": "Stormy",
+   "awnd": 10.07,
+   "prcp": 1.18,
+   "tmax": 69.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 1,
+   "origin": "SEA",
+   "carrier": "AS",
+   "condition": "Rainy",
+   "awnd": 8.28,
+   "prcp": 0.02,
+   "tmax": 46.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 12,
+   "origin": "PDX",
+   "carrier": "OO",
+   "condition": "Foggy",
+   "awnd": 3.36,
+   "prcp": 0.0,
+   "tmax": 59.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 22,
+   "origin": "DCA",
+   "carrier": "DL",
+   "condition": "Rainy",
+   "awnd": 8.72,
+   "prcp": 0.16,
+   "tmax": 54.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 8,
+   "origin": "PHL",
+   "carrier": "OH",
+   "condition": "Rainy",
+   "awnd": 3.8,
+   "prcp": 0.24,
+   "tmax": 46.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 30,
+   "origin": "DSM",
+   "carrier": "AA",
+   "condition": "Stormy",
+   "awnd": 11.86,
+   "prcp": 0.21,
+   "tmax": 47.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 23,
+   "origin": "SEA",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 10.07,
+   "prcp": 0.0,
+   "tmax": 60.0,
+   "delay_min": 8.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 19,
+   "origin": "TPA",
+   "carrier": "B6",
+   "condition": "Clear",
+   "awnd": 4.47,
+   "prcp": 0.0,
+   "tmax": 72.0,
+   "delay_min": 11.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 17,
+   "origin": "CMH",
+   "carrier": "OH",
+   "condition": "Stormy",
+   "awnd": 5.14,
+   "prcp": 0.37,
+   "tmax": 77.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 31,
+   "origin": "ORD",
+   "carrier": "NK",
+   "condition": "Snowy",
+   "awnd": 6.26,
+   "prcp": 0.05,
+   "tmax": 1.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 9,
+   "day": 19,
+   "origin": "MDW",
+   "carrier": "WN",
+   "condition": "Rainy",
+   "awnd": 5.59,
+   "prcp": 0.01,
+   "tmax": 83.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 5,
+   "origin": "JFK",
+   "carrier": "B6",
+   "condition": "Clear",
+   "awnd": 10.51,
+   "prcp": 0.0,
+   "tmax": 82.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 7,
+   "origin": "PDX",
+   "carrier": "WN",
+   "condition": "Rainy",
+   "awnd": 9.62,
+   "prcp": 0.04,
+   "tmax": 47.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 5,
+   "origin": "ORD",
+   "carrier": "MQ",
+   "condition": "Stormy",
+   "awnd": 9.4,
+   "prcp": 0.29,
+   "tmax": 83.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 2,
+   "origin": "CLT",
+   "carrier": "OO",
+   "condition": "Clear",
+   "awnd": 3.8,
+   "prcp": 0.0,
+   "tmax": 66.0,
+   "delay_min": 1.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 2,
+   "origin": "DFW",
+   "carrier": "MQ",
+   "condition": null,
+   "awnd": 6.71,
+   "prcp": 0.09,
+   "tmax": 84.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 23,
+   "origin": "DFW",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 4.92,
+   "prcp": 0.0,
+   "tmax": 55.0,
+   "delay_min": 1.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 17,
+   "origin": "LAX",
+   "carrier": "OO",
+   "condition": "Clear",
+   "awnd": 7.38,
+   "prcp": 0.0,
+   "tmax": 72.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 4,
+   "origin": "LGA",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 10.51,
+   "prcp": 0.0,
+   "tmax": 41.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 1,
+   "origin": "SFO",
+   "carrier": "DL",
+   "condition": null,
+   "awnd": 6.26,
+   "prcp": 0.03,
+   "tmax": 65.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 26,
+   "origin": "OKC",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 7.83,
+   "prcp": 0.0,
+   "tmax": 74.0,
+   "delay_min": 7.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 20,
+   "origin": "BDL",
+   "carrier": "OH",
+   "condition": "Clear",
+   "awnd": 8.05,
+   "prcp": 0.0,
+   "tmax": 56.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 9,
+   "day": 9,
+   "origin": "BHM",
+   "carrier": "MQ",
+   "condition": "Clear",
+   "awnd": 2.46,
+   "prcp": 0.0,
+   "tmax": 98.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 26,
+   "origin": "DFW",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 14.99,
+   "prcp": 0.0,
+   "tmax": 89.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 23,
+   "origin": "DFW",
+   "carrier": "MQ",
+   "condition": "Clear",
+   "awnd": 10.96,
+   "prcp": 0.0,
+   "tmax": 88.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 28,
+   "origin": "LAS",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 13.2,
+   "prcp": 0.0,
+   "tmax": 74.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 15,
+   "origin": "ATL",
+   "carrier": "DL",
+   "condition": "Rainy",
+   "awnd": 5.82,
+   "prcp": 0.39,
+   "tmax": 73.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 5,
+   "origin": "BOS",
+   "carrier": "B6",
+   "condition": "Clear",
+   "awnd": 8.05,
+   "prcp": 0.0,
+   "tmax": 77.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 13,
+   "origin": "GEG",
+   "carrier": "OO",
+   "condition": "Foggy",
+   "awnd": 6.93,
+   "prcp": 0.0,
+   "tmax": 40.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 15,
+   "origin": "TPA",
+   "carrier": "B6",
+   "condition": "Clear",
+   "awnd": 10.51,
+   "prcp": 0.0,
+   "tmax": 77.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 10,
+   "origin": "ANC",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 5.82,
+   "prcp": 0.0,
+   "tmax": 62.0,
+   "delay_min": 218.0,
+   "delayed": 1
+  },
+  {
+   "month": 3,
+   "day": 8,
+   "origin": "DEN",
+   "carrier": "WN",
+   "condition": "Rainy",
+   "awnd": 8.5,
+   "prcp": 0.03,
+   "tmax": 53.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 23,
+   "origin": "ABQ",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 8.5,
+   "prcp": 0.0,
+   "tmax": 43.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 23,
+   "origin": "BOS",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 11.41,
+   "prcp": 0.0,
+   "tmax": 57.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 23,
+   "origin": "LAS",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 4.92,
+   "prcp": 0.0,
+   "tmax": 94.0,
+   "delay_min": 2.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 13,
+   "origin": "ORD",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 7.38,
+   "prcp": 0.0,
+   "tmax": 61.0,
+   "delay_min": 2.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 26,
+   "origin": "PDX",
+   "carrier": "UA",
+   "condition": "Clear",
+   "awnd": 4.7,
+   "prcp": 0.0,
+   "tmax": 60.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 8,
+   "origin": "ANC",
+   "carrier": "AS",
+   "condition": "Clear",
+   "awnd": 9.84,
+   "prcp": 0.0,
+   "tmax": 64.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 30,
+   "origin": "ATL",
+   "carrier": "OO",
+   "condition": "Clear",
+   "awnd": 4.92,
+   "prcp": 0.0,
+   "tmax": 85.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 30,
+   "origin": "ATL",
+   "carrier": "DL",
+   "condition": "Rainy",
+   "awnd": 5.14,
+   "prcp": 0.12,
+   "tmax": 92.0,
+   "delay_min": 33.0,
+   "delayed": 1
+  },
+  {
+   "month": 11,
+   "day": 4,
+   "origin": "DFW",
+   "carrier": "YV",
+   "condition": "Foggy",
+   "awnd": 10.29,
+   "prcp": 0.0,
+   "tmax": 77.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 19,
+   "origin": "MCI",
+   "carrier": "YX",
+   "condition": "Clear",
+   "awnd": 7.61,
+   "prcp": 0.0,
+   "tmax": 63.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 1,
+   "origin": "ATL",
+   "carrier": "OO",
+   "condition": "Clear",
+   "awnd": 9.62,
+   "prcp": 0.0,
+   "tmax": 61.0,
+   "delay_min": 34.0,
+   "delayed": 1
+  },
+  {
+   "month": 5,
+   "day": 7,
+   "origin": "ORD",
+   "carrier": "OO",
+   "condition": "Rainy",
+   "awnd": 14.54,
+   "prcp": 0.42,
+   "tmax": 50.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 2,
+   "origin": "ORD",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 14.09,
+   "prcp": 0.0,
+   "tmax": 55.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 1,
+   "origin": "PDX",
+   "carrier": "AS",
+   "condition": "Rainy",
+   "awnd": 8.5,
+   "prcp": 0.02,
+   "tmax": 49.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 25,
+   "origin": "DEN",
+   "carrier": "WN",
+   "condition": "Foggy",
+   "awnd": 7.61,
+   "prcp": 0.0,
+   "tmax": 56.0,
+   "delay_min": 6.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 14,
+   "origin": "IAH",
+   "carrier": "UA",
+   "condition": "Stormy",
+   "awnd": 11.41,
+   "prcp": 0.06,
+   "tmax": 76.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 19,
+   "origin": "BNA",
+   "carrier": "YX",
+   "condition": "Foggy",
+   "awnd": 2.46,
+   "prcp": 0.0,
+   "tmax": 60.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 31,
+   "origin": "DFW",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 6.71,
+   "prcp": 0.0,
+   "tmax": 50.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 7,
+   "origin": "PHX",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 4.7,
+   "prcp": 0.0,
+   "tmax": 75.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 10,
+   "origin": "SEA",
+   "carrier": "AS",
+   "condition": "Rainy",
+   "awnd": 4.92,
+   "prcp": 0.38,
+   "tmax": 74.0,
+   "delay_min": 72.0,
+   "delayed": 1
+  },
+  {
+   "month": 7,
+   "day": 22,
+   "origin": "PHX",
+   "carrier": "WN",
+   "condition": "Stormy",
+   "awnd": 9.84,
+   "prcp": 0.0,
+   "tmax": 104.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 26,
+   "origin": "BHM",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 9.4,
+   "prcp": 0.0,
+   "tmax": 71.0,
+   "delay_min": 12.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 10,
+   "origin": "SFO",
+   "carrier": "UA",
+   "condition": "Clear",
+   "awnd": 15.88,
+   "prcp": 0.0,
+   "tmax": 65.0,
+   "delay_min": 3.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 12,
+   "origin": "JFK",
+   "carrier": "9E",
+   "condition": "Rainy",
+   "awnd": 17.67,
+   "prcp": 0.02,
+   "tmax": 58.0,
+   "delay_min": 71.0,
+   "delayed": 1
+  },
+  {
+   "month": 3,
+   "day": 2,
+   "origin": "ATL",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 7.16,
+   "prcp": 0.0,
+   "tmax": 66.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 23,
+   "origin": "DFW",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 19.24,
+   "prcp": 0.0,
+   "tmax": 91.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 19,
+   "origin": "BNA",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 9.62,
+   "prcp": 0.0,
+   "tmax": 87.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 23,
+   "origin": "CLT",
+   "carrier": "YX",
+   "condition": "Foggy",
+   "awnd": 7.61,
+   "prcp": 0.0,
+   "tmax": 86.0,
+   "delay_min": 27.0,
+   "delayed": 1
+  },
+  {
+   "month": 5,
+   "day": 7,
+   "origin": "CMH",
+   "carrier": "YX",
+   "condition": "Foggy",
+   "awnd": 6.04,
+   "prcp": 0.0,
+   "tmax": 77.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 14,
+   "origin": "ATL",
+   "carrier": "DL",
+   "condition": "Stormy",
+   "awnd": 6.04,
+   "prcp": 0.0,
+   "tmax": 93.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 7,
+   "origin": "OKC",
+   "carrier": "WN",
+   "condition": "Stormy",
+   "awnd": 13.2,
+   "prcp": 0.1,
+   "tmax": 80.0,
+   "delay_min": 16.0,
+   "delayed": 1
+  },
+  {
+   "month": 9,
+   "day": 12,
+   "origin": "MCI",
+   "carrier": "WN",
+   "condition": "Stormy",
+   "awnd": 10.51,
+   "prcp": 0.87,
+   "tmax": 83.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 17,
+   "origin": "BOS",
+   "carrier": "AA",
+   "condition": "Rainy",
+   "awnd": 24.61,
+   "prcp": 0.67,
+   "tmax": 64.0,
+   "delay_min": 19.0,
+   "delayed": 1
+  },
+  {
+   "month": 6,
+   "day": 26,
+   "origin": "MYR",
+   "carrier": "MQ",
+   "condition": "Clear",
+   "awnd": 4.92,
+   "prcp": 0.0,
+   "tmax": 86.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 7,
+   "origin": "SJC",
+   "carrier": "OO",
+   "condition": "Clear",
+   "awnd": 5.14,
+   "prcp": 0.0,
+   "tmax": 57.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 6,
+   "origin": "BOS",
+   "carrier": "YX",
+   "condition": "Snowy",
+   "awnd": 9.17,
+   "prcp": 0.04,
+   "tmax": 38.0,
+   "delay_min": 80.0,
+   "delayed": 1
+  },
+  {
+   "month": 7,
+   "day": 2,
+   "origin": "PHX",
+   "carrier": "OO",
+   "condition": "Clear",
+   "awnd": 7.38,
+   "prcp": 0.0,
+   "tmax": 108.0,
+   "delay_min": 11.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 24,
+   "origin": "SEA",
+   "carrier": "DL",
+   "condition": "Foggy",
+   "awnd": 6.04,
+   "prcp": 0.0,
+   "tmax": 71.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 22,
+   "origin": "STL",
+   "carrier": "WN",
+   "condition": "Stormy",
+   "awnd": 12.75,
+   "prcp": 0.0,
+   "tmax": 87.0,
+   "delay_min": 13.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 21,
+   "origin": "JFK",
+   "carrier": "YX",
+   "condition": "Clear",
+   "awnd": 26.62,
+   "prcp": 0.0,
+   "tmax": 16.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 16,
+   "origin": "BOS",
+   "carrier": "B6",
+   "condition": "Clear",
+   "awnd": 18.34,
+   "prcp": 0.0,
+   "tmax": 61.0,
+   "delay_min": 5.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 7,
+   "origin": "SFO",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 4.7,
+   "prcp": 0.0,
+   "tmax": 54.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 18,
+   "origin": "SFO",
+   "carrier": "OO",
+   "condition": "Clear",
+   "awnd": 12.75,
+   "prcp": 0.0,
+   "tmax": 68.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 24,
+   "origin": "CLT",
+   "carrier": "AA",
+   "condition": "Foggy",
+   "awnd": 4.03,
+   "prcp": 0.0,
+   "tmax": 94.0,
+   "delay_min": 22.0,
+   "delayed": 1
+  },
+  {
+   "month": 10,
+   "day": 3,
+   "origin": "DEN",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 11.18,
+   "prcp": 0.0,
+   "tmax": 70.0,
+   "delay_min": 7.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 12,
+   "origin": "DEN",
+   "carrier": "WN",
+   "condition": "Stormy",
+   "awnd": 12.75,
+   "prcp": 0.07,
+   "tmax": 94.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 13,
+   "origin": "ATL",
+   "carrier": "DL",
+   "condition": "Stormy",
+   "awnd": 7.38,
+   "prcp": 0.0,
+   "tmax": 89.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 5,
+   "origin": "SJC",
+   "carrier": "OO",
+   "condition": null,
+   "awnd": 13.2,
+   "prcp": 0.1,
+   "tmax": 56.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 11,
+   "origin": "MCO",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 9.62,
+   "prcp": 0.0,
+   "tmax": 74.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 24,
+   "origin": "AUS",
+   "carrier": "UA",
+   "condition": "Clear",
+   "awnd": 3.8,
+   "prcp": 0.0,
+   "tmax": 97.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 4,
+   "origin": "PWM",
+   "carrier": "WN",
+   "condition": "Snowy",
+   "awnd": 10.51,
+   "prcp": 0.61,
+   "tmax": 39.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 12,
+   "origin": "DCA",
+   "carrier": "OH",
+   "condition": "Clear",
+   "awnd": 4.7,
+   "prcp": 0.0,
+   "tmax": 39.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 26,
+   "origin": "SMF",
+   "carrier": "WN",
+   "condition": null,
+   "awnd": 6.71,
+   "prcp": 0.12,
+   "tmax": 65.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 17,
+   "origin": "SFO",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 17.9,
+   "prcp": 0.0,
+   "tmax": 68.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 14,
+   "origin": "CHS",
+   "carrier": "EV",
+   "condition": "Clear",
+   "awnd": 9.62,
+   "prcp": 0.0,
+   "tmax": 77.0,
+   "delay_min": 65.0,
+   "delayed": 1
+  },
+  {
+   "month": 11,
+   "day": 23,
+   "origin": "FLL",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 4.92,
+   "prcp": 0.0,
+   "tmax": 83.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 9,
+   "origin": "DEN",
+   "carrier": "AS",
+   "condition": "Clear",
+   "awnd": 8.05,
+   "prcp": 0.0,
+   "tmax": 38.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 7,
+   "origin": "LGA",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 12.3,
+   "prcp": 0.0,
+   "tmax": 33.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 30,
+   "origin": "ELP",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 7.16,
+   "prcp": 0.0,
+   "tmax": 48.0,
+   "delay_min": 21.0,
+   "delayed": 1
+  },
+  {
+   "month": 5,
+   "day": 27,
+   "origin": "RDU",
+   "carrier": "YX",
+   "condition": "Clear",
+   "awnd": 3.13,
+   "prcp": 0.0,
+   "tmax": 89.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 17,
+   "origin": "ORD",
+   "carrier": "OO",
+   "condition": "Foggy",
+   "awnd": 7.61,
+   "prcp": 0.0,
+   "tmax": 67.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 8,
+   "origin": "RDU",
+   "carrier": "OH",
+   "condition": "Clear",
+   "awnd": 9.17,
+   "prcp": 0.0,
+   "tmax": 67.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 9,
+   "origin": "GRR",
+   "carrier": "AA",
+   "condition": "Snowy",
+   "awnd": 15.43,
+   "prcp": 0.01,
+   "tmax": 30.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 26,
+   "origin": "BOS",
+   "carrier": "DL",
+   "condition": "Stormy",
+   "awnd": 11.86,
+   "prcp": 0.23,
+   "tmax": 89.0,
+   "delay_min": 4.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 11,
+   "origin": "STL",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 4.92,
+   "prcp": 0.0,
+   "tmax": 83.0,
+   "delay_min": 55.0,
+   "delayed": 1
+  },
+  {
+   "month": 12,
+   "day": 11,
+   "origin": "JAX",
+   "carrier": "B6",
+   "condition": "Rainy",
+   "awnd": 9.62,
+   "prcp": 0.05,
+   "tmax": 71.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 12,
+   "origin": "ATL",
+   "carrier": "WN",
+   "condition": "Rainy",
+   "awnd": 12.75,
+   "prcp": 0.14,
+   "tmax": 52.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 13,
+   "origin": "SLC",
+   "carrier": "OO",
+   "condition": "Rainy",
+   "awnd": 6.71,
+   "prcp": 0.14,
+   "tmax": 45.0,
+   "delay_min": 989.0,
+   "delayed": 1
+  },
+  {
+   "month": 2,
+   "day": 22,
+   "origin": "DTW",
+   "carrier": "NK",
+   "condition": "Clear",
+   "awnd": 4.7,
+   "prcp": 0.0,
+   "tmax": 37.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 20,
+   "origin": "PIT",
+   "carrier": "AA",
+   "condition": null,
+   "awnd": 13.42,
+   "prcp": 0.01,
+   "tmax": 75.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 23,
+   "origin": "PHX",
+   "carrier": "AA",
+   "condition": null,
+   "awnd": 8.28,
+   "prcp": 0.06,
+   "tmax": 76.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 20,
+   "origin": "CLT",
+   "carrier": "OH",
+   "condition": "Rainy",
+   "awnd": 8.05,
+   "prcp": 0.05,
+   "tmax": 62.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 18,
+   "origin": "DEN",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 9.84,
+   "prcp": 0.0,
+   "tmax": 99.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 2,
+   "origin": "DFW",
+   "carrier": "YV",
+   "condition": "Foggy",
+   "awnd": 8.28,
+   "prcp": 0.0,
+   "tmax": 67.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 3,
+   "origin": "MDW",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 11.63,
+   "prcp": 0.0,
+   "tmax": 38.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 23,
+   "origin": "LAS",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 3.36,
+   "prcp": 0.0,
+   "tmax": 53.0,
+   "delay_min": 16.0,
+   "delayed": 1
+  },
+  {
+   "month": 2,
+   "day": 22,
+   "origin": "HOU",
+   "carrier": "WN",
+   "condition": null,
+   "awnd": 6.93,
+   "prcp": 0.01,
+   "tmax": 74.0,
+   "delay_min": 44.0,
+   "delayed": 1
+  },
+  {
+   "month": 2,
+   "day": 13,
+   "origin": "PWM",
+   "carrier": "9E",
+   "condition": "Stormy",
+   "awnd": 12.08,
+   "prcp": 1.15,
+   "tmax": 34.0,
+   "delay_min": 52.0,
+   "delayed": 1
+  },
+  {
+   "month": 8,
+   "day": 8,
+   "origin": "MDW",
+   "carrier": "WN",
+   "condition": "Stormy",
+   "awnd": 10.07,
+   "prcp": 0.01,
+   "tmax": 87.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 10,
+   "origin": "JAX",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 5.82,
+   "prcp": 0.0,
+   "tmax": 57.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 11,
+   "origin": "EWR",
+   "carrier": "UA",
+   "condition": "Clear",
+   "awnd": 16.33,
+   "prcp": 0.0,
+   "tmax": 65.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 24,
+   "origin": "EWR",
+   "carrier": "UA",
+   "condition": "Rainy",
+   "awnd": 14.54,
+   "prcp": 0.81,
+   "tmax": 47.0,
+   "delay_min": 17.0,
+   "delayed": 1
+  },
+  {
+   "month": 11,
+   "day": 19,
+   "origin": "BHM",
+   "carrier": "OH",
+   "condition": "Clear",
+   "awnd": 5.59,
+   "prcp": 0.0,
+   "tmax": 67.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 8,
+   "origin": "FLL",
+   "carrier": "NK",
+   "condition": "Stormy",
+   "awnd": 4.47,
+   "prcp": 0.34,
+   "tmax": 91.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 3,
+   "origin": "DTW",
+   "carrier": "NK",
+   "condition": "Clear",
+   "awnd": 7.38,
+   "prcp": 0.0,
+   "tmax": 67.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 5,
+   "origin": "MCI",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 5.59,
+   "prcp": 0.0,
+   "tmax": 55.0,
+   "delay_min": 42.0,
+   "delayed": 1
+  },
+  {
+   "month": 8,
+   "day": 4,
+   "origin": "ANC",
+   "carrier": "AS",
+   "condition": "Clear",
+   "awnd": 6.04,
+   "prcp": 0.0,
+   "tmax": 71.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 10,
+   "origin": "RDU",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 3.8,
+   "prcp": 0.0,
+   "tmax": 43.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 9,
+   "day": 24,
+   "origin": "BUR",
+   "carrier": "WN",
+   "condition": "Rainy",
+   "awnd": 6.04,
+   "prcp": 0.01,
+   "tmax": 78.0,
+   "delay_min": 4.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 22,
+   "origin": "PHL",
+   "carrier": "AA",
+   "condition": "Rainy",
+   "awnd": 11.18,
+   "prcp": 0.01,
+   "tmax": 69.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 3,
+   "origin": "IND",
+   "carrier": "OO",
+   "condition": "Clear",
+   "awnd": 3.8,
+   "prcp": 0.0,
+   "tmax": 77.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 12,
+   "origin": "MCO",
+   "carrier": "NK",
+   "condition": "Stormy",
+   "awnd": 7.83,
+   "prcp": 0.33,
+   "tmax": 90.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 17,
+   "origin": "DEN",
+   "carrier": "OO",
+   "condition": "Stormy",
+   "awnd": 6.93,
+   "prcp": 0.08,
+   "tmax": 75.0,
+   "delay_min": 330.0,
+   "delayed": 1
+  },
+  {
+   "month": 5,
+   "day": 7,
+   "origin": "CLT",
+   "carrier": "AA",
+   "condition": "Foggy",
+   "awnd": 7.38,
+   "prcp": 0.0,
+   "tmax": 82.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 28,
+   "origin": "LGB",
+   "carrier": "B6",
+   "condition": "Foggy",
+   "awnd": 4.92,
+   "prcp": 0.0,
+   "tmax": 70.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 18,
+   "origin": "CLT",
+   "carrier": "OH",
+   "condition": "Clear",
+   "awnd": 3.58,
+   "prcp": 0.0,
+   "tmax": 71.0,
+   "delay_min": 1.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 4,
+   "origin": "DFW",
+   "carrier": "YV",
+   "condition": "Clear",
+   "awnd": 13.65,
+   "prcp": 0.0,
+   "tmax": 94.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 30,
+   "origin": "FLL",
+   "carrier": "B6",
+   "condition": "Stormy",
+   "awnd": 10.51,
+   "prcp": 0.77,
+   "tmax": 88.0,
+   "delay_min": 26.0,
+   "delayed": 1
+  },
+  {
+   "month": 8,
+   "day": 1,
+   "origin": "LAS",
+   "carrier": "NK",
+   "condition": "Clear",
+   "awnd": 4.47,
+   "prcp": 0.0,
+   "tmax": 104.0,
+   "delay_min": 43.0,
+   "delayed": 1
+  },
+  {
+   "month": 4,
+   "day": 26,
+   "origin": "AUS",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 6.71,
+   "prcp": 0.0,
+   "tmax": 81.0,
+   "delay_min": 30.0,
+   "delayed": 1
+  },
+  {
+   "month": 5,
+   "day": 16,
+   "origin": "DFW",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 10.96,
+   "prcp": 0.0,
+   "tmax": 87.0,
+   "delay_min": 67.0,
+   "delayed": 1
+  },
+  {
+   "month": 5,
+   "day": 6,
+   "origin": "ABQ",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 8.28,
+   "prcp": 0.0,
+   "tmax": 81.0,
+   "delay_min": 10.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 11,
+   "origin": "MCI",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 8.05,
+   "prcp": 0.0,
+   "tmax": 85.0,
+   "delay_min": 5.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 6,
+   "origin": "MCO",
+   "carrier": "NK",
+   "condition": "Clear",
+   "awnd": 4.92,
+   "prcp": 0.0,
+   "tmax": 77.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 3,
+   "origin": "XNA",
+   "carrier": "OO",
+   "condition": "Rainy",
+   "awnd": 5.59,
+   "prcp": 0.27,
+   "tmax": 42.0,
+   "delay_min": 97.0,
+   "delayed": 1
+  },
+  {
+   "month": 6,
+   "day": 26,
+   "origin": "BUF",
+   "carrier": "UA",
+   "condition": "Clear",
+   "awnd": 12.08,
+   "prcp": 0.0,
+   "tmax": 78.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 6,
+   "origin": "ATL",
+   "carrier": "WN",
+   "condition": "Stormy",
+   "awnd": 7.83,
+   "prcp": 0.0,
+   "tmax": 73.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 11,
+   "origin": "BOS",
+   "carrier": "B6",
+   "condition": "Clear",
+   "awnd": 10.96,
+   "prcp": 0.0,
+   "tmax": 70.0,
+   "delay_min": 7.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 24,
+   "origin": "DFW",
+   "carrier": "MQ",
+   "condition": "Clear",
+   "awnd": 6.04,
+   "prcp": 0.0,
+   "tmax": 88.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 14,
+   "origin": "SJU",
+   "carrier": "B6",
+   "condition": "Rainy",
+   "awnd": 3.8,
+   "prcp": 0.01,
+   "tmax": 88.0,
+   "delay_min": 1.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 4,
+   "origin": "PDX",
+   "carrier": "AS",
+   "condition": "Rainy",
+   "awnd": 5.37,
+   "prcp": 0.06,
+   "tmax": 63.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 4,
+   "origin": "RNO",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 6.26,
+   "prcp": 0.0,
+   "tmax": 80.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 20,
+   "origin": "MIA",
+   "carrier": "AA",
+   "condition": null,
+   "awnd": 13.42,
+   "prcp": 0.01,
+   "tmax": 84.0,
+   "delay_min": 78.0,
+   "delayed": 1
+  },
+  {
+   "month": 2,
+   "day": 4,
+   "origin": "DFW",
+   "carrier": "AA",
+   "condition": "Foggy",
+   "awnd": 8.5,
+   "prcp": 0.0,
+   "tmax": 79.0,
+   "delay_min": 2.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 11,
+   "origin": "LGA",
+   "carrier": "9E",
+   "condition": "Clear",
+   "awnd": 16.55,
+   "prcp": 0.0,
+   "tmax": 53.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 12,
+   "origin": "MCO",
+   "carrier": "UA",
+   "condition": "Stormy",
+   "awnd": 4.47,
+   "prcp": 0.4,
+   "tmax": 93.0,
+   "delay_min": 4.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 25,
+   "origin": "ATL",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 6.71,
+   "prcp": 0.0,
+   "tmax": 65.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 8,
+   "origin": "ABQ",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 6.71,
+   "prcp": 0.0,
+   "tmax": 49.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 15,
+   "origin": "EWR",
+   "carrier": "UA",
+   "condition": "Clear",
+   "awnd": 5.59,
+   "prcp": 0.0,
+   "tmax": 38.0,
+   "delay_min": 24.0,
+   "delayed": 1
+  },
+  {
+   "month": 12,
+   "day": 2,
+   "origin": "PIT",
+   "carrier": "YX",
+   "condition": null,
+   "awnd": 8.5,
+   "prcp": 0.06,
+   "tmax": 37.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 9,
+   "day": 7,
+   "origin": "FLL",
+   "carrier": "NK",
+   "condition": "Clear",
+   "awnd": 8.5,
+   "prcp": 0.0,
+   "tmax": 91.0,
+   "delay_min": 5.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 28,
+   "origin": "LGA",
+   "carrier": "MQ",
+   "condition": "Clear",
+   "awnd": 10.51,
+   "prcp": 0.0,
+   "tmax": 52.0,
+   "delay_min": 14.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 17,
+   "origin": "ATL",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 10.74,
+   "prcp": 0.0,
+   "tmax": 67.0,
+   "delay_min": 5.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 5,
+   "origin": "XNA",
+   "carrier": "EV",
+   "condition": "Clear",
+   "awnd": 8.28,
+   "prcp": 0.0,
+   "tmax": 39.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 29,
+   "origin": "AUS",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 12.97,
+   "prcp": 0.0,
+   "tmax": 80.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 3,
+   "origin": "AUS",
+   "carrier": "WN",
+   "condition": "Foggy",
+   "awnd": 3.8,
+   "prcp": 0.0,
+   "tmax": 96.0,
+   "delay_min": 14.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 5,
+   "origin": "LAX",
+   "carrier": "AA",
+   "condition": "Foggy",
+   "awnd": 4.03,
+   "prcp": 0.0,
+   "tmax": 69.0,
+   "delay_min": 143.0,
+   "delayed": 1
+  },
+  {
+   "month": 11,
+   "day": 22,
+   "origin": "DEN",
+   "carrier": "F9",
+   "condition": "Snowy",
+   "awnd": 7.61,
+   "prcp": 0.13,
+   "tmax": 32.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 9,
+   "day": 8,
+   "origin": "PDX",
+   "carrier": "OO",
+   "condition": "Rainy",
+   "awnd": 7.16,
+   "prcp": 0.18,
+   "tmax": 72.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 21,
+   "origin": "DFW",
+   "carrier": "MQ",
+   "condition": "Foggy",
+   "awnd": 3.8,
+   "prcp": 0.0,
+   "tmax": 48.0,
+   "delay_min": 3.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 19,
+   "origin": "BNA",
+   "carrier": "WN",
+   "condition": "Foggy",
+   "awnd": 8.95,
+   "prcp": 0.0,
+   "tmax": 81.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 5,
+   "origin": "LAS",
+   "carrier": "F9",
+   "condition": "Clear",
+   "awnd": 5.37,
+   "prcp": 0.0,
+   "tmax": 102.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 29,
+   "origin": "ORD",
+   "carrier": "YX",
+   "condition": "Clear",
+   "awnd": 12.75,
+   "prcp": 0.0,
+   "tmax": 84.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 30,
+   "origin": "SAV",
+   "carrier": "YX",
+   "condition": "Rainy",
+   "awnd": 8.5,
+   "prcp": 0.16,
+   "tmax": 91.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 12,
+   "origin": "MSY",
+   "carrier": "YV",
+   "condition": "Clear",
+   "awnd": 8.95,
+   "prcp": 0.0,
+   "tmax": 80.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 17,
+   "origin": "LGA",
+   "carrier": "AA",
+   "condition": "Foggy",
+   "awnd": 8.5,
+   "prcp": 0.0,
+   "tmax": 86.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 9,
+   "day": 21,
+   "origin": "SFO",
+   "carrier": "OO",
+   "condition": "Clear",
+   "awnd": 8.28,
+   "prcp": 0.0,
+   "tmax": 85.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 7,
+   "origin": "ORD",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 7.38,
+   "prcp": 0.0,
+   "tmax": 69.0,
+   "delay_min": 6.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 23,
+   "origin": "DEN",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 9.84,
+   "prcp": 0.0,
+   "tmax": 45.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 5,
+   "origin": "LGA",
+   "carrier": "YX",
+   "condition": "Clear",
+   "awnd": 8.28,
+   "prcp": 0.0,
+   "tmax": 61.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 30,
+   "origin": "SJC",
+   "carrier": "AA",
+   "condition": "Foggy",
+   "awnd": 4.03,
+   "prcp": 0.0,
+   "tmax": 59.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 13,
+   "origin": "LGA",
+   "carrier": "YX",
+   "condition": "Rainy",
+   "awnd": 11.63,
+   "prcp": 0.65,
+   "tmax": 65.0,
+   "delay_min": 48.0,
+   "delayed": 1
+  },
+  {
+   "month": 7,
+   "day": 25,
+   "origin": "ATL",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 7.61,
+   "prcp": 0.0,
+   "tmax": 87.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 9,
+   "origin": "PHX",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 3.13,
+   "prcp": 0.0,
+   "tmax": 85.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 9,
+   "origin": "IAH",
+   "carrier": "F9",
+   "condition": "Clear",
+   "awnd": 6.26,
+   "prcp": 0.0,
+   "tmax": 84.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 1,
+   "origin": "ORD",
+   "carrier": "MQ",
+   "condition": "Clear",
+   "awnd": 6.93,
+   "prcp": 0.0,
+   "tmax": 80.0,
+   "delay_min": 13.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 7,
+   "origin": "IND",
+   "carrier": "DL",
+   "condition": "Foggy",
+   "awnd": 14.32,
+   "prcp": 0.0,
+   "tmax": 82.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 30,
+   "origin": "BOS",
+   "carrier": "B6",
+   "condition": "Rainy",
+   "awnd": 3.36,
+   "prcp": 0.09,
+   "tmax": 66.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 3,
+   "origin": "IND",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 10.96,
+   "prcp": 0.0,
+   "tmax": 81.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 21,
+   "origin": "CHS",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 9.4,
+   "prcp": 0.0,
+   "tmax": 93.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 7,
+   "origin": "PHL",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 10.51,
+   "prcp": 0.0,
+   "tmax": 37.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 12,
+   "origin": "PHX",
+   "carrier": "DL",
+   "condition": "Stormy",
+   "awnd": 7.38,
+   "prcp": 0.23,
+   "tmax": 59.0,
+   "delay_min": 29.0,
+   "delayed": 1
+  },
+  {
+   "month": 5,
+   "day": 31,
+   "origin": "MCO",
+   "carrier": "UA",
+   "condition": "Clear",
+   "awnd": 5.82,
+   "prcp": 0.0,
+   "tmax": 96.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 3,
+   "origin": "DFW",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 6.49,
+   "prcp": 0.0,
+   "tmax": 68.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 19,
+   "origin": "ORD",
+   "carrier": "MQ",
+   "condition": "Stormy",
+   "awnd": 14.54,
+   "prcp": 0.07,
+   "tmax": 74.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 26,
+   "origin": "SNA",
+   "carrier": "OO",
+   "condition": "Clear",
+   "awnd": 3.58,
+   "prcp": 0.0,
+   "tmax": 71.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 25,
+   "origin": "LAS",
+   "carrier": "F9",
+   "condition": "Clear",
+   "awnd": 3.8,
+   "prcp": 0.0,
+   "tmax": 78.0,
+   "delay_min": 54.0,
+   "delayed": 1
+  },
+  {
+   "month": 12,
+   "day": 24,
+   "origin": "TPA",
+   "carrier": "WN",
+   "condition": "Foggy",
+   "awnd": 11.63,
+   "prcp": 0.0,
+   "tmax": 66.0,
+   "delay_min": 96.0,
+   "delayed": 1
+  },
+  {
+   "month": 7,
+   "day": 10,
+   "origin": "LAX",
+   "carrier": "WN",
+   "condition": "Foggy",
+   "awnd": 8.05,
+   "prcp": 0.0,
+   "tmax": 72.0,
+   "delay_min": 9.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 10,
+   "origin": "SEA",
+   "carrier": "AS",
+   "condition": "Clear",
+   "awnd": 5.37,
+   "prcp": 0.0,
+   "tmax": 86.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 8,
+   "origin": "ABQ",
+   "carrier": "OO",
+   "condition": "Clear",
+   "awnd": 8.05,
+   "prcp": 0.0,
+   "tmax": 79.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 25,
+   "origin": "MDW",
+   "carrier": "OO",
+   "condition": "Stormy",
+   "awnd": 11.18,
+   "prcp": 0.14,
+   "tmax": 85.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 17,
+   "origin": "LGA",
+   "carrier": "YX",
+   "condition": "Rainy",
+   "awnd": 10.07,
+   "prcp": 0.03,
+   "tmax": 78.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 11,
+   "origin": "SAN",
+   "carrier": "OO",
+   "condition": "Foggy",
+   "awnd": 6.04,
+   "prcp": 0.0,
+   "tmax": 74.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 30,
+   "origin": "MCO",
+   "carrier": "WN",
+   "condition": "Stormy",
+   "awnd": 3.36,
+   "prcp": 0.68,
+   "tmax": 93.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 27,
+   "origin": "JFK",
+   "carrier": "B6",
+   "condition": "Rainy",
+   "awnd": 11.63,
+   "prcp": 1.41,
+   "tmax": 70.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 26,
+   "origin": "PHL",
+   "carrier": "WN",
+   "condition": "Foggy",
+   "awnd": 4.03,
+   "prcp": 0.0,
+   "tmax": 61.0,
+   "delay_min": 11.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 1,
+   "origin": "DFW",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 6.93,
+   "prcp": 0.0,
+   "tmax": 61.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 29,
+   "origin": "BOS",
+   "carrier": "YX",
+   "condition": "Rainy",
+   "awnd": 7.16,
+   "prcp": 0.08,
+   "tmax": 44.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 12,
+   "origin": "TPA",
+   "carrier": "DL",
+   "condition": "Stormy",
+   "awnd": 10.74,
+   "prcp": 0.06,
+   "tmax": 89.0,
+   "delay_min": 86.0,
+   "delayed": 1
+  },
+  {
+   "month": 4,
+   "day": 5,
+   "origin": "LAX",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 9.84,
+   "prcp": 0.0,
+   "tmax": 66.0,
+   "delay_min": 37.0,
+   "delayed": 1
+  },
+  {
+   "month": 11,
+   "day": 18,
+   "origin": "TPA",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 3.13,
+   "prcp": 0.0,
+   "tmax": 72.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 17,
+   "origin": "AUS",
+   "carrier": "OO",
+   "condition": "Foggy",
+   "awnd": 4.25,
+   "prcp": 0.0,
+   "tmax": 78.0,
+   "delay_min": 28.0,
+   "delayed": 1
+  },
+  {
+   "month": 5,
+   "day": 11,
+   "origin": "MCO",
+   "carrier": "WN",
+   "condition": "Stormy",
+   "awnd": 7.16,
+   "prcp": 0.05,
+   "tmax": 92.0,
+   "delay_min": 77.0,
+   "delayed": 1
+  },
+  {
+   "month": 12,
+   "day": 30,
+   "origin": "BOI",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 2.46,
+   "prcp": 0.0,
+   "tmax": 34.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 28,
+   "origin": "PVD",
+   "carrier": "YX",
+   "condition": "Clear",
+   "awnd": 9.84,
+   "prcp": 0.0,
+   "tmax": 41.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 20,
+   "origin": "PHL",
+   "carrier": "F9",
+   "condition": "Rainy",
+   "awnd": 13.42,
+   "prcp": 0.56,
+   "tmax": 72.0,
+   "delay_min": 92.0,
+   "delayed": 1
+  },
+  {
+   "month": 3,
+   "day": 26,
+   "origin": "DFW",
+   "carrier": "MQ",
+   "condition": "Clear",
+   "awnd": 6.71,
+   "prcp": 0.0,
+   "tmax": 70.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 9,
+   "origin": "DTW",
+   "carrier": "NK",
+   "condition": "Rainy",
+   "awnd": 14.32,
+   "prcp": 0.22,
+   "tmax": 51.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 4,
+   "origin": "LAS",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 5.82,
+   "prcp": 0.0,
+   "tmax": 78.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 18,
+   "origin": "LGA",
+   "carrier": "9E",
+   "condition": "Snowy",
+   "awnd": 7.61,
+   "prcp": 0.03,
+   "tmax": 42.0,
+   "delay_min": 19.0,
+   "delayed": 1
+  },
+  {
+   "month": 12,
+   "day": 3,
+   "origin": "MEM",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 6.26,
+   "prcp": 0.0,
+   "tmax": 51.0,
+   "delay_min": 2.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 25,
+   "origin": "STL",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 4.03,
+   "prcp": 0.0,
+   "tmax": 87.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 6,
+   "origin": "DTW",
+   "carrier": "DL",
+   "condition": "Foggy",
+   "awnd": 4.7,
+   "prcp": 0.0,
+   "tmax": 73.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 12,
+   "origin": "MSY",
+   "carrier": "NK",
+   "condition": "Stormy",
+   "awnd": 5.37,
+   "prcp": 2.96,
+   "tmax": 84.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 18,
+   "origin": "EWR",
+   "carrier": "UA",
+   "condition": "Foggy",
+   "awnd": 8.05,
+   "prcp": 0.0,
+   "tmax": 64.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 11,
+   "origin": "SAT",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 14.76,
+   "prcp": 0.0,
+   "tmax": 75.0,
+   "delay_min": 2.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 7,
+   "origin": "MSY",
+   "carrier": "DL",
+   "condition": "Foggy",
+   "awnd": 10.51,
+   "prcp": 0.0,
+   "tmax": 81.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 2,
+   "origin": "LAS",
+   "carrier": "F9",
+   "condition": "Clear",
+   "awnd": 2.01,
+   "prcp": 0.0,
+   "tmax": 57.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 9,
+   "origin": "CLT",
+   "carrier": "OH",
+   "condition": "Clear",
+   "awnd": 3.36,
+   "prcp": 0.0,
+   "tmax": 96.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 30,
+   "origin": "BOS",
+   "carrier": "B6",
+   "condition": "Clear",
+   "awnd": 16.11,
+   "prcp": 0.0,
+   "tmax": 39.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 20,
+   "origin": "PHX",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 6.49,
+   "prcp": 0.0,
+   "tmax": 87.0,
+   "delay_min": 131.0,
+   "delayed": 1
+  },
+  {
+   "month": 7,
+   "day": 18,
+   "origin": "SJC",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 9.62,
+   "prcp": 0.0,
+   "tmax": 84.0,
+   "delay_min": 1.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 30,
+   "origin": "MCI",
+   "carrier": "WN",
+   "condition": "Rainy",
+   "awnd": 7.16,
+   "prcp": 0.01,
+   "tmax": 77.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 29,
+   "origin": "TYS",
+   "carrier": "OO",
+   "condition": "Clear",
+   "awnd": 7.16,
+   "prcp": 0.0,
+   "tmax": 73.0,
+   "delay_min": 108.0,
+   "delayed": 1
+  },
+  {
+   "month": 9,
+   "day": 10,
+   "origin": "PHX",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 10.74,
+   "prcp": 0.0,
+   "tmax": 100.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 26,
+   "origin": "BWI",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 7.16,
+   "prcp": 0.0,
+   "tmax": 93.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 18,
+   "origin": "HNL",
+   "carrier": "HA",
+   "condition": "Clear",
+   "awnd": 7.83,
+   "prcp": 0.0,
+   "tmax": 75.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 3,
+   "origin": "BUR",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 4.03,
+   "prcp": 0.0,
+   "tmax": 92.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 22,
+   "origin": "LGA",
+   "carrier": "WN",
+   "condition": "Rainy",
+   "awnd": 16.11,
+   "prcp": 0.07,
+   "tmax": 54.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 23,
+   "origin": "PHX",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 6.26,
+   "prcp": 0.0,
+   "tmax": 105.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 28,
+   "origin": "DAL",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 13.42,
+   "prcp": 0.0,
+   "tmax": 63.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 6,
+   "origin": "LAX",
+   "carrier": "UA",
+   "condition": null,
+   "awnd": 8.5,
+   "prcp": 0.98,
+   "tmax": 61.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 9,
+   "day": 26,
+   "origin": "RDU",
+   "carrier": "UA",
+   "condition": "Foggy",
+   "awnd": 6.04,
+   "prcp": 0.0,
+   "tmax": 94.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 19,
+   "origin": "EWR",
+   "carrier": "DL",
+   "condition": "Stormy",
+   "awnd": 7.16,
+   "prcp": 0.0,
+   "tmax": 94.0,
+   "delay_min": 89.0,
+   "delayed": 1
+  },
+  {
+   "month": 1,
+   "day": 14,
+   "origin": "SAN",
+   "carrier": "F9",
+   "condition": null,
+   "awnd": 6.71,
+   "prcp": 0.41,
+   "tmax": 62.0,
+   "delay_min": 16.0,
+   "delayed": 1
+  },
+  {
+   "month": 1,
+   "day": 16,
+   "origin": "LGA",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 12.08,
+   "prcp": 0.0,
+   "tmax": 40.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 30,
+   "origin": "SLC",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 15.21,
+   "prcp": 0.0,
+   "tmax": 86.0,
+   "delay_min": 11.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 23,
+   "origin": "BWI",
+   "carrier": "WN",
+   "condition": "Rainy",
+   "awnd": 7.38,
+   "prcp": 0.17,
+   "tmax": 40.0,
+   "delay_min": 230.0,
+   "delayed": 1
+  },
+  {
+   "month": 12,
+   "day": 5,
+   "origin": "RSW",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 3.8,
+   "prcp": 0.0,
+   "tmax": 72.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 21,
+   "origin": "ORF",
+   "carrier": "UA",
+   "condition": "Rainy",
+   "awnd": 11.63,
+   "prcp": 0.46,
+   "tmax": 91.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 17,
+   "origin": "ATL",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 10.74,
+   "prcp": 0.0,
+   "tmax": 67.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 7,
+   "origin": "DTW",
+   "carrier": "DL",
+   "condition": "Rainy",
+   "awnd": 9.62,
+   "prcp": 0.16,
+   "tmax": 51.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 22,
+   "origin": "HNL",
+   "carrier": "HA",
+   "condition": "Clear",
+   "awnd": 7.83,
+   "prcp": 0.0,
+   "tmax": 65.0,
+   "delay_min": 2.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 6,
+   "origin": "STL",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 5.37,
+   "prcp": 0.0,
+   "tmax": 36.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 29,
+   "origin": "ORD",
+   "carrier": "UA",
+   "condition": "Rainy",
+   "awnd": 8.28,
+   "prcp": 0.15,
+   "tmax": 45.0,
+   "delay_min": 44.0,
+   "delayed": 1
+  },
+  {
+   "month": 10,
+   "day": 21,
+   "origin": "SFO",
+   "carrier": "UA",
+   "condition": "Clear",
+   "awnd": 4.7,
+   "prcp": 0.0,
+   "tmax": 82.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 4,
+   "origin": "MEM",
+   "carrier": "MQ",
+   "condition": "Clear",
+   "awnd": 10.51,
+   "prcp": 0.0,
+   "tmax": 31.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 30,
+   "origin": "SFO",
+   "carrier": "OO",
+   "condition": "Clear",
+   "awnd": 11.18,
+   "prcp": 0.0,
+   "tmax": 65.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 22,
+   "origin": "DTW",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 10.74,
+   "prcp": 0.0,
+   "tmax": 46.0,
+   "delay_min": 7.0,
+   "delayed": 0
+  },
+  {
+   "month": 9,
+   "day": 25,
+   "origin": "TYS",
+   "carrier": "EV",
+   "condition": "Clear",
+   "awnd": 2.91,
+   "prcp": 0.0,
+   "tmax": 90.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 5,
+   "origin": "BDL",
+   "carrier": "9E",
+   "condition": "Rainy",
+   "awnd": 6.49,
+   "prcp": 0.6,
+   "tmax": 62.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 1,
+   "origin": "ATL",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 9.62,
+   "prcp": 0.0,
+   "tmax": 61.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 15,
+   "origin": "DCA",
+   "carrier": "OH",
+   "condition": "Clear",
+   "awnd": 3.36,
+   "prcp": 0.0,
+   "tmax": 53.0,
+   "delay_min": 2.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 2,
+   "origin": "ORD",
+   "carrier": "UA",
+   "condition": "Snowy",
+   "awnd": 8.72,
+   "prcp": 0.01,
+   "tmax": 30.0,
+   "delay_min": 9.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 12,
+   "origin": "SJC",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 4.7,
+   "prcp": 0.0,
+   "tmax": 79.0,
+   "delay_min": 1.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 18,
+   "origin": "ANC",
+   "carrier": "AS",
+   "condition": "Rainy",
+   "awnd": 6.49,
+   "prcp": 0.01,
+   "tmax": 62.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 20,
+   "origin": "BNA",
+   "carrier": "WN",
+   "condition": "Foggy",
+   "awnd": 3.8,
+   "prcp": 0.0,
+   "tmax": 64.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 4,
+   "origin": "SAN",
+   "carrier": "UA",
+   "condition": "Clear",
+   "awnd": 4.25,
+   "prcp": 0.0,
+   "tmax": 76.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 9,
+   "day": 21,
+   "origin": "DEN",
+   "carrier": "AA",
+   "condition": "Rainy",
+   "awnd": 15.66,
+   "prcp": 0.01,
+   "tmax": 80.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 2,
+   "origin": "ATL",
+   "carrier": "DL",
+   "condition": "Stormy",
+   "awnd": 7.83,
+   "prcp": 0.03,
+   "tmax": 90.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 8,
+   "origin": "ORD",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 4.25,
+   "prcp": 0.0,
+   "tmax": 70.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 27,
+   "origin": "CLT",
+   "carrier": "OH",
+   "condition": "Stormy",
+   "awnd": 5.82,
+   "prcp": 0.15,
+   "tmax": 93.0,
+   "delay_min": 11.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 25,
+   "origin": "IAH",
+   "carrier": "UA",
+   "condition": "Clear",
+   "awnd": 11.86,
+   "prcp": 0.0,
+   "tmax": 90.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 19,
+   "origin": "DTW",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 8.28,
+   "prcp": 0.0,
+   "tmax": 31.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 25,
+   "origin": "ORD",
+   "carrier": "B6",
+   "condition": "Clear",
+   "awnd": 8.72,
+   "prcp": 0.0,
+   "tmax": 57.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 8,
+   "origin": "EWR",
+   "carrier": "AS",
+   "condition": "Rainy",
+   "awnd": 4.47,
+   "prcp": 0.03,
+   "tmax": 80.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 19,
+   "origin": "PHX",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 10.74,
+   "prcp": 0.0,
+   "tmax": 81.0,
+   "delay_min": 7.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 12,
+   "origin": "BUR",
+   "carrier": "OO",
+   "condition": "Foggy",
+   "awnd": 9.17,
+   "prcp": 0.0,
+   "tmax": 37.0,
+   "delay_min": 11.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 18,
+   "origin": "DFW",
+   "carrier": "AA",
+   "condition": null,
+   "awnd": 10.96,
+   "prcp": 0.01,
+   "tmax": 73.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 28,
+   "origin": "DCA",
+   "carrier": "UA",
+   "condition": "Stormy",
+   "awnd": 3.58,
+   "prcp": 0.0,
+   "tmax": 92.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 8,
+   "origin": "SJC",
+   "carrier": "DL",
+   "condition": null,
+   "awnd": 7.38,
+   "prcp": 0.01,
+   "tmax": 56.0,
+   "delay_min": 18.0,
+   "delayed": 1
+  },
+  {
+   "month": 5,
+   "day": 28,
+   "origin": "ORD",
+   "carrier": "DL",
+   "condition": "Stormy",
+   "awnd": 9.4,
+   "prcp": 0.63,
+   "tmax": 70.0,
+   "delay_min": 802.0,
+   "delayed": 1
+  },
+  {
+   "month": 8,
+   "day": 23,
+   "origin": "SFO",
+   "carrier": "UA",
+   "condition": "Foggy",
+   "awnd": 6.93,
+   "prcp": 0.0,
+   "tmax": 79.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 9,
+   "day": 6,
+   "origin": "SFO",
+   "carrier": "UA",
+   "condition": "Foggy",
+   "awnd": 14.32,
+   "prcp": 0.0,
+   "tmax": 71.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 18,
+   "origin": "LAX",
+   "carrier": "NK",
+   "condition": "Clear",
+   "awnd": 7.38,
+   "prcp": 0.0,
+   "tmax": 71.0,
+   "delay_min": 11.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 6,
+   "origin": "JFK",
+   "carrier": "AS",
+   "condition": "Clear",
+   "awnd": 17.22,
+   "prcp": 0.0,
+   "tmax": 49.0,
+   "delay_min": 26.0,
+   "delayed": 1
+  },
+  {
+   "month": 6,
+   "day": 17,
+   "origin": "PDX",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 6.71,
+   "prcp": 0.0,
+   "tmax": 81.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 5,
+   "origin": "ORD",
+   "carrier": "MQ",
+   "condition": "Clear",
+   "awnd": 8.28,
+   "prcp": 0.0,
+   "tmax": 52.0,
+   "delay_min": 18.0,
+   "delayed": 1
+  },
+  {
+   "month": 6,
+   "day": 10,
+   "origin": "LGA",
+   "carrier": "YX",
+   "condition": "Rainy",
+   "awnd": 12.08,
+   "prcp": 0.78,
+   "tmax": 70.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 11,
+   "origin": "JFK",
+   "carrier": "B6",
+   "condition": "Rainy",
+   "awnd": 8.5,
+   "prcp": 0.01,
+   "tmax": 70.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 16,
+   "origin": "GSO",
+   "carrier": "YX",
+   "condition": "Clear",
+   "awnd": 17.9,
+   "prcp": 0.0,
+   "tmax": 50.0,
+   "delay_min": 4.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 31,
+   "origin": "PHX",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 5.14,
+   "prcp": 0.0,
+   "tmax": 81.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 19,
+   "origin": "ATL",
+   "carrier": "DL",
+   "condition": "Stormy",
+   "awnd": 5.82,
+   "prcp": 0.08,
+   "tmax": 93.0,
+   "delay_min": 17.0,
+   "delayed": 1
+  },
+  {
+   "month": 6,
+   "day": 4,
+   "origin": "RDU",
+   "carrier": "UA",
+   "condition": "Clear",
+   "awnd": 6.93,
+   "prcp": 0.0,
+   "tmax": 84.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 10,
+   "origin": "CLE",
+   "carrier": "YV",
+   "condition": "Snowy",
+   "awnd": 5.14,
+   "prcp": 0.16,
+   "tmax": 32.0,
+   "delay_min": 11.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 7,
+   "origin": "BWI",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 3.58,
+   "prcp": 0.0,
+   "tmax": 45.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 15,
+   "origin": "LAS",
+   "carrier": "WN",
+   "condition": "Rainy",
+   "awnd": 3.13,
+   "prcp": 0.39,
+   "tmax": 48.0,
+   "delay_min": 35.0,
+   "delayed": 1
+  },
+  {
+   "month": 5,
+   "day": 24,
+   "origin": "MYR",
+   "carrier": "UA",
+   "condition": "Rainy",
+   "awnd": 10.29,
+   "prcp": 0.04,
+   "tmax": 73.0,
+   "delay_min": 43.0,
+   "delayed": 1
+  },
+  {
+   "month": 5,
+   "day": 30,
+   "origin": "DEN",
+   "carrier": "F9",
+   "condition": "Clear",
+   "awnd": 7.61,
+   "prcp": 0.0,
+   "tmax": 68.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 18,
+   "origin": "ATL",
+   "carrier": "DL",
+   "condition": "Stormy",
+   "awnd": 10.96,
+   "prcp": 0.09,
+   "tmax": 80.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 3,
+   "origin": "MCI",
+   "carrier": "YX",
+   "condition": "Clear",
+   "awnd": 5.82,
+   "prcp": 0.0,
+   "tmax": 47.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 6,
+   "origin": "RIC",
+   "carrier": "NK",
+   "condition": "Clear",
+   "awnd": 7.61,
+   "prcp": 0.0,
+   "tmax": 89.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 6,
+   "origin": "SEA",
+   "carrier": "AA",
+   "condition": "Foggy",
+   "awnd": 5.37,
+   "prcp": 0.0,
+   "tmax": 84.0,
+   "delay_min": 23.0,
+   "delayed": 1
+  },
+  {
+   "month": 1,
+   "day": 28,
+   "origin": "SJC",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 2.91,
+   "prcp": 0.0,
+   "tmax": 65.0,
+   "delay_min": 5.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 18,
+   "origin": "CLT",
+   "carrier": "AA",
+   "condition": "Stormy",
+   "awnd": 3.13,
+   "prcp": 0.0,
+   "tmax": 95.0,
+   "delay_min": 49.0,
+   "delayed": 1
+  },
+  {
+   "month": 9,
+   "day": 25,
+   "origin": "DEN",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 6.71,
+   "prcp": 0.0,
+   "tmax": 80.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 20,
+   "origin": "HOU",
+   "carrier": "DL",
+   "condition": "Stormy",
+   "awnd": 5.14,
+   "prcp": 0.0,
+   "tmax": 90.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 2,
+   "origin": "ATL",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 8.72,
+   "prcp": 0.0,
+   "tmax": 64.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 30,
+   "origin": "BNA",
+   "carrier": "AA",
+   "condition": "Foggy",
+   "awnd": 7.16,
+   "prcp": 0.0,
+   "tmax": 80.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 19,
+   "origin": "IAH",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 6.04,
+   "prcp": 0.0,
+   "tmax": 82.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 3,
+   "origin": "MIA",
+   "carrier": "AA",
+   "condition": null,
+   "awnd": 10.07,
+   "prcp": 0.03,
+   "tmax": 88.0,
+   "delay_min": 8.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 21,
+   "origin": "ATL",
+   "carrier": "NK",
+   "condition": "Clear",
+   "awnd": 5.14,
+   "prcp": 0.0,
+   "tmax": 77.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 7,
+   "origin": "MEM",
+   "carrier": "YX",
+   "condition": "Rainy",
+   "awnd": 12.3,
+   "prcp": 0.02,
+   "tmax": 63.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 3,
+   "origin": "AUS",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 9.4,
+   "prcp": 0.0,
+   "tmax": 92.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 9,
+   "day": 28,
+   "origin": "LAX",
+   "carrier": "AS",
+   "condition": "Clear",
+   "awnd": 8.72,
+   "prcp": 0.0,
+   "tmax": 72.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 27,
+   "origin": "SDF",
+   "carrier": "OO",
+   "condition": "Clear",
+   "awnd": 6.71,
+   "prcp": 0.0,
+   "tmax": 69.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 11,
+   "origin": "JAX",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 7.38,
+   "prcp": 0.0,
+   "tmax": 62.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 19,
+   "origin": "ORD",
+   "carrier": "OO",
+   "condition": "Clear",
+   "awnd": 7.83,
+   "prcp": 0.0,
+   "tmax": 49.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 9,
+   "day": 3,
+   "origin": "DEN",
+   "carrier": "UA",
+   "condition": "Clear",
+   "awnd": 10.51,
+   "prcp": 0.0,
+   "tmax": 83.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 6,
+   "origin": "LAS",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 6.93,
+   "prcp": 0.0,
+   "tmax": 84.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 3,
+   "origin": "DEN",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 11.18,
+   "prcp": 0.0,
+   "tmax": 70.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 5,
+   "origin": "SAN",
+   "carrier": "NK",
+   "condition": "Foggy",
+   "awnd": 2.91,
+   "prcp": 0.0,
+   "tmax": 69.0,
+   "delay_min": 29.0,
+   "delayed": 1
+  },
+  {
+   "month": 3,
+   "day": 28,
+   "origin": "CLT",
+   "carrier": "OH",
+   "condition": "Clear",
+   "awnd": 3.8,
+   "prcp": 0.0,
+   "tmax": 68.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 24,
+   "origin": "ATL",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 9.62,
+   "prcp": 0.0,
+   "tmax": 71.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 20,
+   "origin": "DTW",
+   "carrier": "DL",
+   "condition": "Snowy",
+   "awnd": 9.4,
+   "prcp": 0.09,
+   "tmax": 37.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 25,
+   "origin": "SJC",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 6.26,
+   "prcp": 0.0,
+   "tmax": 78.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 17,
+   "origin": "PHX",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 8.05,
+   "prcp": 0.0,
+   "tmax": 60.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 10,
+   "origin": "ATL",
+   "carrier": "DL",
+   "condition": "Rainy",
+   "awnd": 15.66,
+   "prcp": 0.2,
+   "tmax": 68.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 22,
+   "origin": "SEA",
+   "carrier": "AS",
+   "condition": "Clear",
+   "awnd": 5.37,
+   "prcp": 0.0,
+   "tmax": 75.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 17,
+   "origin": "MCI",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 9.17,
+   "prcp": 0.0,
+   "tmax": 52.0,
+   "delay_min": 29.0,
+   "delayed": 1
+  },
+  {
+   "month": 11,
+   "day": 27,
+   "origin": "BOS",
+   "carrier": "YX",
+   "condition": "Rainy",
+   "awnd": 6.26,
+   "prcp": 0.2,
+   "tmax": 54.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 7,
+   "origin": "ORD",
+   "carrier": "UA",
+   "condition": "Stormy",
+   "awnd": 12.97,
+   "prcp": 0.71,
+   "tmax": 44.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 30,
+   "origin": "ALB",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 7.16,
+   "prcp": 0.0,
+   "tmax": 33.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 9,
+   "day": 30,
+   "origin": "BNA",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 6.26,
+   "prcp": 0.0,
+   "tmax": 88.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 28,
+   "origin": "MSY",
+   "carrier": "NK",
+   "condition": "Clear",
+   "awnd": 8.72,
+   "prcp": 0.0,
+   "tmax": 90.0,
+   "delay_min": 196.0,
+   "delayed": 1
+  },
+  {
+   "month": 5,
+   "day": 27,
+   "origin": "ATL",
+   "carrier": "9E",
+   "condition": "Clear",
+   "awnd": 7.83,
+   "prcp": 0.0,
+   "tmax": 94.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 19,
+   "origin": "SFO",
+   "carrier": "OO",
+   "condition": "Clear",
+   "awnd": 8.72,
+   "prcp": 0.0,
+   "tmax": 56.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 24,
+   "origin": "BOS",
+   "carrier": "B6",
+   "condition": "Clear",
+   "awnd": 10.29,
+   "prcp": 0.0,
+   "tmax": 80.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 27,
+   "origin": "EWR",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 6.26,
+   "prcp": 0.0,
+   "tmax": 74.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 31,
+   "origin": "ORD",
+   "carrier": "MQ",
+   "condition": "Snowy",
+   "awnd": 14.54,
+   "prcp": 0.08,
+   "tmax": 28.0,
+   "delay_min": 5.0,
+   "delayed": 0
+  },
+  {
+   "month": 1,
+   "day": 31,
+   "origin": "SFO",
+   "carrier": "OO",
+   "condition": null,
+   "awnd": 5.37,
+   "prcp": 0.35,
+   "tmax": 59.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 12,
+   "day": 19,
+   "origin": "DCA",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 7.83,
+   "prcp": 0.0,
+   "tmax": 34.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 7,
+   "origin": "SFO",
+   "carrier": "UA",
+   "condition": "Clear",
+   "awnd": 14.09,
+   "prcp": 0.0,
+   "tmax": 70.0,
+   "delay_min": 191.0,
+   "delayed": 1
+  },
+  {
+   "month": 8,
+   "day": 23,
+   "origin": "ATL",
+   "carrier": "DL",
+   "condition": "Stormy",
+   "awnd": 6.04,
+   "prcp": 0.0,
+   "tmax": 94.0,
+   "delay_min": 6.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 3,
+   "origin": "BNA",
+   "carrier": "AA",
+   "condition": null,
+   "awnd": 5.82,
+   "prcp": 0.27,
+   "tmax": 84.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 9,
+   "origin": "LAS",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 12.3,
+   "prcp": 0.0,
+   "tmax": 91.0,
+   "delay_min": 10.0,
+   "delayed": 0
+  },
+  {
+   "month": 9,
+   "day": 2,
+   "origin": "PSP",
+   "carrier": "OO",
+   "condition": "Stormy",
+   "awnd": 5.59,
+   "prcp": 0.39,
+   "tmax": 106.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 23,
+   "origin": "SFO",
+   "carrier": "OO",
+   "condition": "Foggy",
+   "awnd": 6.93,
+   "prcp": 0.0,
+   "tmax": 79.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 12,
+   "origin": "DEN",
+   "carrier": "UA",
+   "condition": "Clear",
+   "awnd": 6.93,
+   "prcp": 0.0,
+   "tmax": 60.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 5,
+   "origin": "LAS",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 13.2,
+   "prcp": 0.0,
+   "tmax": 51.0,
+   "delay_min": 51.0,
+   "delayed": 1
+  },
+  {
+   "month": 4,
+   "day": 12,
+   "origin": "CLT",
+   "carrier": "OH",
+   "condition": "Stormy",
+   "awnd": 9.62,
+   "prcp": 1.0,
+   "tmax": 77.0,
+   "delay_min": 59.0,
+   "delayed": 1
+  },
+  {
+   "month": 10,
+   "day": 6,
+   "origin": "DTW",
+   "carrier": "DL",
+   "condition": "Rainy",
+   "awnd": 8.95,
+   "prcp": 0.12,
+   "tmax": 71.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 7,
+   "origin": "IAH",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 14.09,
+   "prcp": 0.0,
+   "tmax": 82.0,
+   "delay_min": 30.0,
+   "delayed": 1
+  },
+  {
+   "month": 4,
+   "day": 12,
+   "origin": "BWI",
+   "carrier": "WN",
+   "condition": "Rainy",
+   "awnd": 6.93,
+   "prcp": 0.04,
+   "tmax": 72.0,
+   "delay_min": 37.0,
+   "delayed": 1
+  },
+  {
+   "month": 11,
+   "day": 11,
+   "origin": "ATL",
+   "carrier": "AA",
+   "condition": "Rainy",
+   "awnd": 4.25,
+   "prcp": 0.02,
+   "tmax": 68.0,
+   "delay_min": 8.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 19,
+   "origin": "BWI",
+   "carrier": "WN",
+   "condition": "Rainy",
+   "awnd": 4.03,
+   "prcp": 0.03,
+   "tmax": 57.0,
+   "delay_min": 7.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 9,
+   "origin": "LAX",
+   "carrier": "UA",
+   "condition": null,
+   "awnd": 7.38,
+   "prcp": 0.23,
+   "tmax": 58.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 20,
+   "origin": "TPA",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 9.4,
+   "prcp": 0.0,
+   "tmax": 85.0,
+   "delay_min": 7.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 13,
+   "origin": "CLT",
+   "carrier": "AA",
+   "condition": "Foggy",
+   "awnd": 5.82,
+   "prcp": 0.0,
+   "tmax": 81.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 16,
+   "origin": "HOU",
+   "carrier": "WN",
+   "condition": "Stormy",
+   "awnd": 10.51,
+   "prcp": 0.63,
+   "tmax": 78.0,
+   "delay_min": 4.0,
+   "delayed": 0
+  },
+  {
+   "month": 3,
+   "day": 19,
+   "origin": "DTW",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 6.71,
+   "prcp": 0.0,
+   "tmax": 49.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 6,
+   "origin": "BOS",
+   "carrier": "B6",
+   "condition": "Clear",
+   "awnd": 10.51,
+   "prcp": 0.0,
+   "tmax": 56.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 26,
+   "origin": "SEA",
+   "carrier": "OO",
+   "condition": "Clear",
+   "awnd": 9.84,
+   "prcp": 0.0,
+   "tmax": 46.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 28,
+   "origin": "MCO",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 7.38,
+   "prcp": 0.0,
+   "tmax": 97.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 6,
+   "day": 26,
+   "origin": "DSM",
+   "carrier": "MQ",
+   "condition": "Stormy",
+   "awnd": 4.92,
+   "prcp": 0.0,
+   "tmax": 85.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 7,
+   "origin": "ATL",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 7.61,
+   "prcp": 0.0,
+   "tmax": 95.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 2,
+   "day": 19,
+   "origin": "MCO",
+   "carrier": "AS",
+   "condition": "Clear",
+   "awnd": 8.28,
+   "prcp": 0.0,
+   "tmax": 86.0,
+   "delay_min": 13.0,
+   "delayed": 0
+  },
+  {
+   "month": 8,
+   "day": 8,
+   "origin": "CMH",
+   "carrier": "YX",
+   "condition": "Clear",
+   "awnd": 10.07,
+   "prcp": 0.0,
+   "tmax": 89.0,
+   "delay_min": 168.0,
+   "delayed": 1
+  },
+  {
+   "month": 1,
+   "day": 8,
+   "origin": "PIT",
+   "carrier": "NK",
+   "condition": null,
+   "awnd": 12.53,
+   "prcp": 0.2,
+   "tmax": 59.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 6,
+   "origin": "DFW",
+   "carrier": "AA",
+   "condition": "Stormy",
+   "awnd": 7.16,
+   "prcp": 0.41,
+   "tmax": 95.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 5,
+   "day": 8,
+   "origin": "IAH",
+   "carrier": "OO",
+   "condition": null,
+   "awnd": 5.59,
+   "prcp": 0.01,
+   "tmax": 84.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 4,
+   "origin": "MDW",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 10.96,
+   "prcp": 0.0,
+   "tmax": 58.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 4,
+   "day": 29,
+   "origin": "DFW",
+   "carrier": "DL",
+   "condition": "Clear",
+   "awnd": 14.32,
+   "prcp": 0.0,
+   "tmax": 80.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 17,
+   "origin": "ORF",
+   "carrier": "UA",
+   "condition": "Foggy",
+   "awnd": 21.47,
+   "prcp": 0.0,
+   "tmax": 52.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 17,
+   "origin": "OKC",
+   "carrier": "OO",
+   "condition": "Clear",
+   "awnd": 13.42,
+   "prcp": 0.0,
+   "tmax": 97.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 7,
+   "origin": "ORD",
+   "carrier": "YX",
+   "condition": "Snowy",
+   "awnd": 11.18,
+   "prcp": 0.0,
+   "tmax": 31.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 10,
+   "day": 5,
+   "origin": "CLT",
+   "carrier": "AA",
+   "condition": "Clear",
+   "awnd": 12.3,
+   "prcp": 0.0,
+   "tmax": 78.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  },
+  {
+   "month": 11,
+   "day": 26,
+   "origin": "HNL",
+   "carrier": "HA",
+   "condition": "Clear",
+   "awnd": 7.83,
+   "prcp": 0.0,
+   "tmax": 67.0,
+   "delay_min": 2.0,
+   "delayed": 0
+  },
+  {
+   "month": 7,
+   "day": 1,
+   "origin": "RNO",
+   "carrier": "WN",
+   "condition": "Clear",
+   "awnd": 7.83,
+   "prcp": 0.0,
+   "tmax": 90.0,
+   "delay_min": 0.0,
+   "delayed": 0
+  }
+ ]
+}

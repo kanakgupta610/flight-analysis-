@@ -1,0 +1,40 @@
+# Raw dataset: keep it outside the repo (e.g. ~/Downloads/archive) and never commit it.
+# Only the small processed summary data/results.json belongs in git.
+*.csv
+*.csv.gz
+*.tsv
+*.parquet
+*.feather
+*.zip
+*.7z
+*.tar.gz
+raw_data/
+archive/
+data/raw/
+GHCND_documentation.pdf
+
+# Credentials and local config
+.env
+.env.*
+*.pem
+*.key
+*.p12
+credentials*.json
+service-account*.json
+secrets*
+.vercel/
+.netrc
+
+# Temporary and OS files
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+*.swp
+tmp/
+.cache/
